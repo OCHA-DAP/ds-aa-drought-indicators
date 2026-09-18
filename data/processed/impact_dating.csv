@@ -1,0 +1,153 @@
+iso3,record,start,end,season,basis
+AFG,CERF 2006 Rapid Response $19.5M,2005-11-01,2006-05-28,2006,overlap
+AFG,CERF 2006 Rapid Response $12.8M,2005-11-01,2006-05-28,2006,overlap
+AFG,CERF 2008 Underfunded Emergencies $4.6M (undated),2008-01-01,,2007,undated: last-season-before-impact
+AFG,CERF 2008 Rapid Response $8.0M (undated),2008-01-01,,2007,undated: last-season-before-impact
+AFG,CERF 2010 Underfunded Emergencies $11.0M (undated),2010-01-01,,2009,undated: last-season-before-impact
+AFG,CERF 2018 Rapid Response $11.9M,2017-10-01,2018-05-28,2018,overlap
+AFG,CERF 2021 Rapid Response $15.0M,2020-10-01,2021-05-28,2021,overlap
+AFG,CERF 2025 Rapid Response $6.7M,2024-10-01,2025-05-28,2025,overlap
+AFG,EM-DAT 2000-9186-AFG (2580000 affected),2000-05-01,2002-12-28,2000,last-season-before-impact
+AFG,EM-DAT 2006-9570-AFG (1900000 affected),2006-07-01,2006-12-28,2006,last-season-before-impact
+AFG,EM-DAT 2008-9475-AFG (280000 affected),2008-10-01,2008-10-28,2008,last-season-before-impact
+AFG,EM-DAT 2011-9312-AFG (1750000 affected),2011-01-01,2011-08-28,2010,last-season-before-impact
+AFG,EM-DAT 2018-9278-AFG (13500000 affected),2018-04-01,2019-07-28,2018,last-season-before-impact
+AFG,EM-DAT 2021-9116-AFG (11000000 affected),2021-01-01,2023-05-28,2020,last-season-before-impact
+BFA,CERF 2006 Underfunded Emergencies $2.0M (undated),2006-01-01,,2005,undated: last-season-before-impact
+BFA,CERF 2007 Underfunded Emergencies $0.9M (undated),2007-01-01,,2006,undated: last-season-before-impact
+BFA,CERF 2008 Underfunded Emergencies $3.4M (undated),2008-01-01,,2007,undated: last-season-before-impact
+BFA,CERF 2008 Rapid Response $2.0M (undated),2008-01-01,,2007,undated: last-season-before-impact
+BFA,CERF 2009 Underfunded Emergencies $2.0M (undated),2009-01-01,,2008,undated: last-season-before-impact
+BFA,CERF 2012 Rapid Response $9.2M,2011-06-01,2011-09-28,2011,overlap
+BFA,CERF 2014 Underfunded Emergencies $3.9M (undated),2014-01-01,,2013,undated: last-season-before-impact
+BFA,CERF 2018 Rapid Response $9.0M,2017-06-01,2017-09-28,2017,overlap
+BFA,EM-DAT 2001-9044-BFA (n/a affected),2001-04-01,2001-12-28,2000,last-season-before-impact
+BFA,EM-DAT 2011-9524-BFA (2850000 affected),2011-12-01,2012-12-28,2011,last-season-before-impact
+BFA,EM-DAT 2014-9196-BFA (4000000 affected),2014-05-01,2014-12-28,2013,last-season-before-impact
+BFA,EM-DAT 2020-9235-BFA (2900000 affected),2020-01-01,2020-06-28,2019,last-season-before-impact
+BFA,EM-DAT 2022-9781-BFA (3500928 affected),2022-01-01,2022-11-28,2021,last-season-before-impact
+ETH,CERF 2006 Rapid Response $4.0M,2005-10-01,2005-12-28,2005,last-season-before-impact
+ETH,CERF 2008 Rapid Response $20.0M,2007-10-01,2008-05-28,2007,last-season-before-impact
+ETH,CERF 2011 Rapid Response $14.6M,2010-10-01,2011-05-28,2010,last-season-before-impact
+ETH,CERF 2011 Underfunded Emergencies $11.0M (undated),2011-01-01,,2010,undated: last-season-before-impact
+ETH,CERF 2012 Underfunded Emergencies $9.9M (undated),2012-01-01,,2011,undated: last-season-before-impact
+ETH,CERF 2015 Rapid Response $17.0M,2015-02-01,2015-09-28,2015,overlap
+ETH,CERF 2015 Underfunded Emergencies $10.0M (undated),2015-01-01,,2014,undated: last-season-before-impact
+ETH,CERF 2017 Rapid Response $18.5M,2016-03-01,2016-12-28,2016,overlap
+ETH,CERF 2017 Rapid Response $10.0M,2016-10-01,2017-06-28,2017,overlap
+ETH,CERF 2019 Rapid Response $10.0M,2019-03-01,2019-05-28,2018,last-season-before-impact
+ETH,CERF 2021 Rapid Response $5.0M,2020-10-01,2021-05-28,2020,last-season-before-impact
+ETH,CERF 2021 Rapid Response $20.0M,2020-10-01,2021-05-28,2020,last-season-before-impact
+ETH,CERF 2021 Rapid Response $5.0M,2020-10-01,2021-12-28,2021,overlap
+ETH,CERF 2022 Rapid Response $12.0M,2020-10-01,2022-05-28,2021,overlap
+ETH,CERF 2023 Rapid Response $10.0M,2022-03-01,2022-12-28,2022,overlap
+ETH,CERF 2023 Underfunded Emergencies $23.0M (undated),2023-01-01,,2022,undated: last-season-before-impact
+ETH,CERF 2024 Rapid Response $10.0M,2024-10-01,2024-12-28,2024,last-season-before-impact
+ETH,CERF 2024 Rapid Response $17.0M,2023-06-01,2023-09-28,2023,overlap
+ETH,CERF 2026 Rapid Response $3.0M,2026-06-01,2026-09-28,2026,overlap
+ETH,EM-DAT 1999-9388-ETH (4900000 affected),1999-09-01,2000-12-28,1999,last-season-before-impact
+ETH,EM-DAT 2003-9772-ETH (12600000 affected),2003-01-01,2004-12-28,2002,last-season-before-impact
+ETH,EM-DAT 2005-9747-ETH (2600000 affected),2005-11-01,2006-12-28,2005,last-season-before-impact
+ETH,EM-DAT 2008-9200-ETH (6400000 affected),2008-05-01,2009-10-28,2007,last-season-before-impact
+ETH,EM-DAT 2009-9615-ETH (6200000 affected),2009-01-01,2010-08-28,2008,last-season-before-impact
+ETH,EM-DAT 2010-9082-ETH (4805679 affected),2011-01-01,2012-01-28,2010,last-season-before-impact
+ETH,EM-DAT 2011-9663-ETH (1000000 affected),2012-01-01,2012-12-28,2011,last-season-before-impact
+ETH,EM-DAT 2015-9545-ETH (10200000 affected),2015-09-01,2017-04-28,2015,last-season-before-impact
+ETH,EM-DAT 2021-9546-ETH (6800000 affected),2021-05-01,2022-02-28,2020,last-season-before-impact
+ETH,EM-DAT 2022-9174-ETH (24100000 affected),2022-01-01,2023-02-28,2021,last-season-before-impact
+KEN,CERF 2006 Rapid Response $2.1M,2005-10-01,2005-12-28,2005,last-season-before-impact
+KEN,CERF 2008 Rapid Response $5.1M,2008-03-01,2008-05-28,2008,overlap
+KEN,CERF 2009 Rapid Response $5.0M,2008-10-01,2009-05-28,2009,overlap
+KEN,CERF 2009 Underfunded Emergencies $8.0M (undated),2009-01-01,,2008,undated: last-season-before-impact
+KEN,CERF 2011 Rapid Response $13.6M,2010-10-01,2011-05-28,2011,overlap
+KEN,CERF 2012 Rapid Response $2.0M (undated),2012-01-01,,2011,undated: last-season-before-impact
+KEN,CERF 2017 Rapid Response $10.3M,2016-03-01,2017-05-28,2016,overlap
+KEN,CERF 2019 Rapid Response $5.0M,2019-03-01,2019-05-28,2019,overlap
+KEN,CERF 2021 Rapid Response $5.0M,2020-10-01,2021-05-28,2021,overlap
+KEN,CERF 2022 Underfunded Emergencies $6.0M (undated),2022-01-01,,2021,undated: last-season-before-impact
+KEN,CERF 2022 Rapid Response $4.0M,2020-10-01,2022-05-28,2021,overlap
+KEN,CERF 2023 Underfunded Emergencies $8.0M (undated),2023-01-01,,2022,undated: last-season-before-impact
+KEN,EM-DAT 1999-9388-KEN (23000000 affected),1999-12-01,2002-12-28,1999,last-season-before-impact
+KEN,EM-DAT 2004-9288-KEN (2300000 affected),2004-07-01,2004-12-28,2004,last-season-before-impact
+KEN,EM-DAT 2005-9719-KEN (3500000 affected),2005-12-01,2006-12-28,2005,last-season-before-impact
+KEN,EM-DAT 2008-9302-KEN (3800000 affected),2008-07-01,2009-12-28,2008,last-season-before-impact
+KEN,EM-DAT 2010-9082-KEN (4300000 affected),2011-01-01,2011-01-28,2010,last-season-before-impact
+KEN,EM-DAT 2011-9663-KEN (3750000 affected),2011-01-01,2012-12-28,2010,last-season-before-impact
+KEN,EM-DAT 2014-9404-KEN (1600000 affected),2014-01-01,2015-05-28,2013,last-season-before-impact
+KEN,EM-DAT 2016-9452-KEN (3400000 affected),2016-06-01,2018-01-28,2016,last-season-before-impact
+KEN,EM-DAT 2019-9145-KEN (2600000 affected),2019-01-01,2019-09-28,2018,last-season-before-impact
+KEN,EM-DAT 2020-9609-KEN (4500000 affected),2020-12-01,2022-12-28,2020,last-season-before-impact
+KEN,EM-DAT 2025-9222-KEN (2150000 affected),2025-01-01,2025-12-28,2024,last-season-before-impact
+GTM,CERF 2009 Rapid Response $5.0M,2009-05-01,2009-09-28,2009,overlap
+GTM,CERF 2014 Rapid Response $2.9M,2014-06-01,2014-08-28,2014,overlap
+GTM,CERF 2016 Rapid Response $4.8M,2015-05-01,2015-09-28,2015,overlap
+GTM,CERF 2019 Rapid Response $2.0M,2018-06-01,2018-08-28,2018,overlap
+GTM,CERF 2020 Underfunded Emergencies $5.0M (undated),2020-01-01,,2019,undated: last-season-before-impact
+GTM,CERF 2025 Rapid Response $4.0M,2025-09-01,2025-11-28,2025,last-season-before-impact
+GTM,CERF 2026 Rapid Response $4.0M,2026-05-01,2026-08-28,2026,overlap
+GTM,EM-DAT 2001-9383-GTM (113596 affected),2001-09-01,2001-12-28,2001,last-season-before-impact
+GTM,EM-DAT 2009-9415-GTM (2500000 affected),2009-03-01,2009-12-28,2008,last-season-before-impact
+GTM,EM-DAT 2012-9355-GTM (266485 affected),2012-06-01,2012-12-28,2012,last-season-before-impact
+GTM,EM-DAT 2014-9277-GTM (1300000 affected),2014-08-01,2016-12-28,2014,last-season-before-impact
+GTM,EM-DAT 2018-9277-GTM (1500000 affected),2018-06-01,2019-03-28,2018,last-season-before-impact
+HND,CERF 2009 Rapid Response $1.6M,2009-05-01,2009-11-28,2009,overlap
+HND,CERF 2014 Rapid Response $2.6M,2014-06-01,2014-08-28,2014,overlap
+HND,CERF 2015 Rapid Response $2.2M,2015-05-01,2015-09-28,2015,overlap
+HND,CERF 2019 Underfunded Emergencies $3.0M (undated),2019-01-01,,2018,undated: last-season-before-impact
+HND,CERF 2020 Underfunded Emergencies $5.0M (undated),2020-01-01,,2019,undated: last-season-before-impact
+HND,CERF 2026 Rapid Response $4.0M,2026-05-01,2026-08-28,2026,overlap
+HND,EM-DAT 2000-9860-HND (1125 affected),2000-07-01,2000-12-28,2000,last-season-before-impact
+HND,EM-DAT 2001-9383-HND (195000 affected),2001-07-01,2004-12-28,2001,last-season-before-impact
+HND,EM-DAT 2002-9838-HND (220000 affected),2002-01-01,2002-12-28,2001,last-season-before-impact
+HND,EM-DAT 2004-9363-HND (137500 affected),2004-07-01,2004-12-28,2004,last-season-before-impact
+HND,EM-DAT 2009-9559-HND (45000 affected),2009-11-01,2011-02-28,2009,last-season-before-impact
+HND,EM-DAT 2012-9379-HND (125000 affected),2012-09-01,2012-09-28,2012,last-season-before-impact
+HND,EM-DAT 2014-9332-HND (2023000 affected),2014-04-01,2015-07-28,2013,last-season-before-impact
+HND,EM-DAT 2018-9277-HND (360000 affected),2018-06-01,2019-03-28,2018,last-season-before-impact
+HND,EM-DAT 2023-9167-HND (10300 affected),2023-01-01,2023-07-28,2022,last-season-before-impact
+SLV,CERF 2015 Rapid Response $2.7M,2015-05-01,2015-09-28,2015,overlap
+SLV,CERF 2019 Rapid Response $2.0M,2018-06-01,2018-08-28,2018,overlap
+SLV,CERF 2026 Rapid Response $2.5M,2026-05-01,2026-08-28,2026,overlap
+SLV,EM-DAT 2001-9383-SLV (400000 affected),2001-05-01,2001-12-28,2000,last-season-before-impact
+SLV,EM-DAT 2009-9415-SLV (n/a affected),2009-01-01,2009-12-28,2008,last-season-before-impact
+SLV,EM-DAT 2014-9580-SLV (700000 affected),2015-04-01,2016-12-28,2014,last-season-before-impact
+SLV,EM-DAT 2018-9277-SLV (386610 affected),2018-06-01,2019-03-28,2018,last-season-before-impact
+MRT,CERF 2008 Rapid Response $1.1M,2007-06-01,2007-10-28,2007,overlap
+MRT,CERF 2009 Rapid Response $2.2M,2009-06-01,2009-09-28,2009,overlap
+MRT,CERF 2010 Rapid Response $1.8M,2009-06-01,2009-09-28,2009,overlap
+MRT,CERF 2011 Rapid Response $4.0M,2011-06-01,2011-09-28,2011,overlap
+MRT,CERF 2015 Rapid Response $2.5M,2014-07-01,2015-08-28,2014,overlap
+MRT,CERF 2018 Rapid Response $4.0M,2017-06-01,2017-09-28,2017,overlap
+MRT,CERF 2020 Underfunded Emergencies $6.0M (undated),2020-01-01,,2019,undated: last-season-before-impact
+MRT,CERF 2026 Rapid Response $2.5M,2026-07-01,2026-09-28,2026,overlap
+MRT,EM-DAT 2001-9409-MRT (1000000 affected),2001-04-01,2003-12-28,2000,last-season-before-impact
+MRT,EM-DAT 2010-9292-MRT (838000 affected),2010-01-01,2011-12-28,2009,last-season-before-impact
+MRT,EM-DAT 2011-9662-MRT (723000 affected),2011-01-01,2012-12-28,2010,last-season-before-impact
+MRT,EM-DAT 2017-9343-MRT (3893774 affected),2017-04-01,2017-08-28,2016,last-season-before-impact
+MRT,EM-DAT 2018-9469-MRT (350600 affected),2018-03-01,2019-12-28,2017,last-season-before-impact
+MRT,EM-DAT 2020-9538-MRT (1400000 affected),2020-06-01,2022-11-28,2019,last-season-before-impact
+NER,CERF 2008 Rapid Response $2.0M (undated),2008-01-01,,2007,undated: last-season-before-impact
+NER,CERF 2010 Underfunded Emergencies $6.0M (undated),2010-01-01,,2009,undated: last-season-before-impact
+NER,CERF 2010 Rapid Response $15.0M,2009-06-01,2009-09-28,2009,overlap
+NER,CERF 2010 Rapid Response $14.0M,2009-06-01,2009-09-28,2009,overlap
+NER,CERF 2011 Rapid Response $6.0M,2011-06-01,2011-09-28,2011,overlap
+NER,CERF 2012 Rapid Response $15.9M,2011-06-01,2011-09-28,2011,overlap
+NER,CERF 2022 Rapid Response $9.5M,2022-06-01,2022-07-28,2022,overlap
+NER,CERF 2022 Underfunded Emergencies $10.0M (undated),2022-01-01,,2021,undated: last-season-before-impact
+NER,EM-DAT 2001-9044-NER (3584558 affected),2001-04-01,2002-12-28,2000,last-season-before-impact
+NER,EM-DAT 2005-9362-NER (3000000 affected),2005-07-01,2006-07-28,2004,last-season-before-impact
+NER,EM-DAT 2009-9651-NER (7900000 affected),2009-09-01,2010-03-28,2009,last-season-before-impact
+NER,EM-DAT 2011-9529-NER (3000000 affected),2011-01-01,2012-12-28,2010,last-season-before-impact
+NER,EM-DAT 2015-9166-NER (2588128 affected),2015-04-01,2017-03-28,2014,last-season-before-impact
+NER,EM-DAT 2017-9208-NER (1131300 affected),2017-05-01,2017-06-28,2016,last-season-before-impact
+NER,EM-DAT 2020-9570-NER (3700000 affected),2020-01-01,2020-12-28,2019,last-season-before-impact
+NER,EM-DAT 2022-9254-NER (4400000 affected),2022-01-01,2022-05-28,2021,last-season-before-impact
+TCD,CERF 2010 Rapid Response $3.8M,2009-06-01,2009-09-28,2009,overlap
+TCD,CERF 2011 Rapid Response $6.0M,2011-06-01,2011-09-28,2011,overlap
+TCD,CERF 2018 Rapid Response $10.2M,2017-06-01,2017-10-28,2017,overlap
+TCD,CERF 2026 Rapid Response $4.4M,2026-07-01,2026-09-28,2026,overlap
+TCD,EM-DAT 2001-9044-TCD (800000 affected),2001-01-01,2001-12-28,2000,last-season-before-impact
+TCD,EM-DAT 2009-9654-TCD (2400000 affected),2009-12-01,2010-07-28,2009,last-season-before-impact
+TCD,EM-DAT 2012-9160-TCD (1600000 affected),2012-06-01,2013-02-28,2011,last-season-before-impact
+TCD,EM-DAT 2017-9342-TCD (1886800 affected),2017-03-01,2017-05-28,2016,last-season-before-impact
+TCD,EM-DAT 2022-9335-TCD (2135362 affected),2022-06-01,2022-08-28,2021,last-season-before-impact

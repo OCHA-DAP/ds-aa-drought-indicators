@@ -1,0 +1,6 @@
+{
+  "_notes": "country_id values accepted by ASAP's export/rum/export.php, found by probing every id 1-240 and reading the country returned (Sep 2026). They equal the rank of the ISO3 code in ASAP's full GAUL0 country list, NOT asap0_id and NOT adm0_code. level: highest admin level the export returns data for (2 = provinces/districts, 1 = regions).",
+  "AFG": {"id": 1, "level": 1}, "BFA": {"id": 17, "level": 2}, "TCD": {"id": 184, "level": 2}, "SLV": {"id": 172, "level": 1},
+  "ETH": {"id": 61, "level": 2}, "GTM": {"id": 79, "level": 1}, "HND": {"id": 85, "level": 1}, "KEN": {"id": 102, "level": 1},
+  "MRT": {"id": 129, "level": 2}, "NER": {"id": 137, "level": 2}, "NGA": {"id": 138, "level": 2}, "SSD": {"id": 88, "level": 1, "_note": "unverified here; ds-asap-trends used 88"}
+}

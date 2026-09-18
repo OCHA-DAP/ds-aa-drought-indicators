@@ -1,0 +1,355 @@
+{
+  "_notes": "One entry per drought AA framework country. seasons: growing seasons as dekad ranges (1-36); the first is the main production season. aoi: framework area of interest as admin-1 names (CODAB spelling) — matched to ASAP unit names and FAO ASIS province names by normalised string matching; null = national. staples: FAOSTAT items summed for the production target. bad_years: framework-documented worst/target growing seasons, if any. impact_offset: for CERF/EM-DAT dating, seasons are matched on overlap with the record's valid period, else the last season ending before it.",
+  "AFG": {
+    "name": "Afghanistan",
+    "asap0": 67,
+    "seasons": [
+      {
+        "name": "spring",
+        "dekads": [
+          7,
+          15
+        ],
+        "label": "Mar–May (winter wheat, spring rains)"
+      }
+    ],
+    "aoi": [
+      "Balkh",
+      "Faryab",
+      "Jawzjan",
+      "Sar-e-Pul",
+      "Badghis"
+    ],
+    "staples": [
+      "Wheat"
+    ],
+    "bad_years": null,
+    "framework": "afg-drought 2026-04-04 (endorsed): SEAS5 MAM + CDI (ASI, VHI, ERA5 snow/soil moisture) over 5 northern provinces"
+  },
+  "BFA": {
+    "name": "Burkina Faso",
+    "asap0": 219,
+    "seasons": [
+      {
+        "name": "JAS",
+        "dekads": [
+          19,
+          27
+        ],
+        "label": "Jul–Sep (main rainy season)"
+      }
+    ],
+    "aoi": [
+      "Nord",
+      "Sahel"
+    ],
+    "aoi_asap": [
+      "Loroum",
+      "Oudalan",
+      "Seno",
+      "Yagha"
+    ],
+    "staples": [
+      "Millet",
+      "Sorghum"
+    ],
+    "bad_years": [
+      2011,
+      2014,
+      2017,
+      2019,
+      2022
+    ],
+    "framework": "bfa-drought 2026-04-17 (endorsed): SEAS5 April + ASAP level 3 over 4 provinces"
+  },
+  "ETH": {
+    "name": "Ethiopia",
+    "asap0": 185,
+    "seasons": [
+      {
+        "name": "kiremt",
+        "dekads": [
+          16,
+          27
+        ],
+        "label": "Jun–Sep (Kiremt, Meher harvest)"
+      },
+      {
+        "name": "belg",
+        "dekads": [
+          7,
+          15
+        ],
+        "label": "Mar–May (Belg)"
+      },
+      {
+        "name": "deyr",
+        "dekads": [
+          28,
+          36
+        ],
+        "label": "Oct–Dec (Deyr/short rains, Somali)"
+      }
+    ],
+    "aoi": [
+      "Somali",
+      "Oromia",
+      "Afar",
+      "SNNP",
+      "Sidama"
+    ],
+    "staples": [
+      "Cereals, primary"
+    ],
+    "bad_years": null,
+    "framework": "eth-drought 2026-06-09 (development): SEAS5 zone counts MAM/JJAS; OND via WFP/IRI"
+  },
+  "KEN": {
+    "name": "Kenya",
+    "asap0": 163,
+    "seasons": [
+      {
+        "name": "long",
+        "dekads": [
+          7,
+          15
+        ],
+        "label": "Mar–May (long rains)"
+      },
+      {
+        "name": "short",
+        "dekads": [
+          28,
+          36
+        ],
+        "label": "Oct–Dec (short rains)"
+      }
+    ],
+    "aoi": [
+      "Turkana",
+      "Marsabit",
+      "Mandera",
+      "Wajir",
+      "Garissa",
+      "Isiolo",
+      "Samburu",
+      "Tana River",
+      "Baringo",
+      "Kitui",
+      "Makueni",
+      "Kajiado",
+      "Laikipia",
+      "Kilifi",
+      "Kwale",
+      "Taita Taveta",
+      "Lamu",
+      "Narok",
+      "West Pokot",
+      "Meru",
+      "Tharaka-Nithi",
+      "Embu",
+      "Nyeri"
+    ],
+    "staples": [
+      "Maize (corn)"
+    ],
+    "bad_years": null,
+    "framework": "ken-drought 2023-02-19 (development; IFRC EAP operational): KMD OND forecast over 23 ASAL counties"
+  },
+  "GTM": {
+    "name": "Guatemala",
+    "asap0": 117,
+    "seasons": [
+      {
+        "name": "primera",
+        "dekads": [
+          13,
+          24
+        ],
+        "label": "May–Aug (Primera)"
+      },
+      {
+        "name": "postrera",
+        "dekads": [
+          25,
+          33
+        ],
+        "label": "Sep–Nov (Postrera)"
+      }
+    ],
+    "aoi": [
+      "Chiquimula",
+      "Zacapa",
+      "Jalapa",
+      "El Progreso"
+    ],
+    "staples": [
+      "Maize (corn)",
+      "Beans, dry"
+    ],
+    "bad_years": [
+      2009,
+      2014,
+      2015,
+      2018
+    ],
+    "framework": "lac-dry-corridor 2026-03-13 (endorsed): SEAS5 Primera/Postrera over 4 eastern departments"
+  },
+  "HND": {
+    "name": "Honduras",
+    "asap0": 100,
+    "seasons": [
+      {
+        "name": "primera",
+        "dekads": [
+          13,
+          24
+        ],
+        "label": "May–Aug (Primera)"
+      },
+      {
+        "name": "postrera",
+        "dekads": [
+          25,
+          33
+        ],
+        "label": "Sep–Nov (Postrera)"
+      }
+    ],
+    "aoi": [
+      "El Paraíso",
+      "Francisco Morazán",
+      "F. Morazan"
+    ],
+    "staples": [
+      "Maize (corn)",
+      "Beans, dry"
+    ],
+    "bad_years": [
+      2009,
+      2014,
+      2015,
+      2018
+    ],
+    "framework": "lac-dry-corridor 2026-03-13 (endorsed)"
+  },
+  "SLV": {
+    "name": "El Salvador",
+    "asap0": 52,
+    "seasons": [
+      {
+        "name": "primera",
+        "dekads": [
+          13,
+          24
+        ],
+        "label": "May–Aug (Primera)"
+      },
+      {
+        "name": "postrera",
+        "dekads": [
+          25,
+          33
+        ],
+        "label": "Sep–Nov (Postrera)"
+      }
+    ],
+    "aoi": null,
+    "staples": [
+      "Maize (corn)",
+      "Beans, dry"
+    ],
+    "bad_years": [
+      2009,
+      2014,
+      2015,
+      2018
+    ],
+    "framework": "lac-dry-corridor 2026-03-13 (endorsed): national average"
+  },
+  "MRT": {
+    "name": "Mauritania",
+    "asap0": 90,
+    "seasons": [
+      {
+        "name": "JAS",
+        "dekads": [
+          19,
+          27
+        ],
+        "label": "Jul–Sep"
+      }
+    ],
+    "aoi": [
+      "Assaba",
+      "Guidimakha"
+    ],
+    "staples": [
+      "Sorghum",
+      "Millet",
+      "Maize (corn)"
+    ],
+    "bad_years": [
+      2001,
+      2002,
+      2007,
+      2011,
+      2014,
+      2015,
+      2017,
+      2019,
+      2021
+    ],
+    "framework": "mrt-drought 2026-04-17 (endorsed): ONM JAS forecast + CHIRPS national; activities in Guidimakha"
+  },
+  "NER": {
+    "name": "Niger",
+    "asap0": 80,
+    "seasons": [
+      {
+        "name": "JAS",
+        "dekads": [
+          19,
+          27
+        ],
+        "label": "Jul–Sep"
+      }
+    ],
+    "aoi": null,
+    "staples": [
+      "Millet",
+      "Sorghum"
+    ],
+    "bad_years": null,
+    "framework": "ner-drought (development): IRI forecast + ENACTS SPI, zone south of 17N"
+  },
+  "TCD": {
+    "name": "Chad",
+    "asap0": 212,
+    "seasons": [
+      {
+        "name": "JAS",
+        "dekads": [
+          19,
+          27
+        ],
+        "label": "Jul–Sep"
+      }
+    ],
+    "aoi": [
+      "Lac",
+      "Kanem",
+      "Barh-El-Gazel",
+      "Sila",
+      "Wadi Fira",
+      "Batha",
+      "Ouaddaï"
+    ],
+    "staples": [
+      "Millet",
+      "Sorghum"
+    ],
+    "bad_years": null,
+    "framework": "tcd-drought 2025-03-03 (endorsed): SEAS5 JAS + GeoSahel biomass over 7 Sahelian provinces"
+  }
+}

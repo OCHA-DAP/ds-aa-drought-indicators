@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Afghanistan — drought indicators vs impact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>:root { color-scheme: light;
+  --b5:#269777; --b6:#1e795f; --b7:#18614c; --b05:#e9f5f1; --b1:#d4eae4;
+  --n9:#1f2324; --n8:#3f4748; --n7:#5e6a6b; --n6:#7e8e8f; --n15:#e2e8e8; --n1:#ebeff0; --n05:#f5f7f7;
+  --w05:#fbf4ea; --w5:#d48f2a; --w7:#7f5619; --e05:#f9eceb; --e6:#9d372b; --e7:#762920; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--n05); color: var(--n9); font: 400 15px/1.55 'Roboto', system-ui, sans-serif; }
+.home-link { display: inline-block; margin: 10px 12px; padding: 6px 12px; font: 500 13px/1 'Roboto', system-ui, sans-serif;
+  color: var(--b6); background: var(--b05); border: 1px solid var(--b1); border-radius: 4px; text-decoration: none; }
+.home-link:hover { background: var(--b1); }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 16px 56px; }
+h1 { font-family: 'Merriweather', Georgia, serif; font-size: 26px; font-weight: 700; line-height: 1.25; margin: 8px 0 6px; text-wrap: balance; }
+h2 { font-size: 19px; font-weight: 700; margin: 36px 0 8px; color: var(--b7); border-bottom: 2px solid var(--b1); padding-bottom: 5px; }
+h3 { font-size: 15.5px; font-weight: 700; margin: 20px 0 6px; }
+.sub { color: var(--n7); margin: 2px 0 18px; max-width: 80ch; }
+p, li { max-width: 82ch; }
+a { color: var(--b6); }
+.callout { background: #fff; border: 1px solid var(--n15); border-left: 4px solid var(--b6); border-radius: 4px; padding: 12px 16px; margin: 16px 0; }
+.callout.warn { border-left-color: var(--w5); }
+.callout p { margin: 6px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0 6px; background: #fff; border: 1px solid var(--n15); font-size: 13px; }
+th, td { padding: 6px 9px; border-bottom: 1px solid var(--n1); text-align: left; vertical-align: top; }
+th { background: var(--n05); font-weight: 500; color: var(--n8); }
+tr:last-child td { border-bottom: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.data { font-size: 11.5px; } table.data th, table.data td { padding: 3px 6px; text-align: right; }
+.tblwrap { overflow-x: auto; }
+.tag { display: inline-block; font-size: 11.5px; font-weight: 500; padding: 1px 7px; border-radius: 9px; white-space: nowrap; }
+.tag.sig { background: var(--e05); color: var(--e7); }
+.tag.ns { background: var(--n1); color: var(--n7); }
+figure { margin: 18px 0; background: #fff; border: 1px solid var(--n15); border-radius: 6px; padding: 14px 12px 8px; }
+figure svg { display: block; margin: 0 auto; }
+figcaption { color: var(--n7); font-size: 13px; padding: 10px 6px 2px; max-width: 100ch; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin: 14px 0; }
+.k { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border: 1px solid #e2e7e7; border-top: 3px solid var(--b5); border-radius: 5px; padding: 14px 16px 12px; }
+.k:hover { box-shadow: 0 4px 20px rgba(31,35,36,.10); }
+.k h2 { font-family: 'Merriweather', Georgia, serif; margin: 0 0 6px; font-size: 15px; border: 0; padding: 0; color: var(--b6); }
+.k p { margin: 0 0 10px; font-size: 12.5px; color: var(--n8); flex: 1; }
+.k .foot { font-size: 10.5px; color: var(--n7); text-transform: uppercase; letter-spacing: .06em; border-top: 1px solid #f0f3f3; padding-top: 8px; }
+.k .foot em { font-style: normal; color: var(--b5); font-weight: 500; }
+.meta { color: var(--n7); font-size: 13px; border-top: 1px solid var(--n15); padding-top: 14px; margin-top: 40px; }
+code { background: var(--n1); padding: 1px 5px; border-radius: 3px; font-size: 12.5px; }
+@media (max-width: 640px) { h1 { font-size: 22px; } th, td { padding: 5px 6px; } }
+</style></head><body>
+<a class="home-link" href="../">← Drought indicators vs impact</a>
+<div class="wrap"><h1>Afghanistan: which indicators track drought impact?</h1>
+<p class='sub'>afg-drought 2026-04-04 (endorsed): SEAS5 MAM + CDI (ASI, VHI, ERA5 snow/soil moisture) over 5 northern provinces. Main season used here: Mar–May (winter wheat, spring rains). Production target: Wheat (FAOSTAT, national, % from 2001–2024 trend).</p>
+<h2>Framework area</h2>
+<div class='tblwrap'><table><tr><th>Indicator</th><th class='num'>r with production</th><th class='num'>R²</th><th class='num'>Leave-one-out R²</th><th>p</th><th class='num'>AUC, impact seasons</th><th class='num'>AUC, CERF-dated</th><th class='num'>AUC, EM-DAT</th></tr>
+<tr><td>Temperature</td><td class='num'>-0.65</td><td class='num'>0.42</td><td class='num'>+0.30</td><td><span class='tag sig'>0.001</span></td><td class='num'>0.72</td><td class='num'>0.70</td><td class='num'>0.72</td></tr>
+<tr><td>Biomass (zFPARc)</td><td class='num'>+0.54</td><td class='num'>0.29</td><td class='num'>+0.17</td><td><span class='tag sig'>0.006</span></td><td class='num'>0.62</td><td class='num'>0.75</td><td class='num'>0.59</td></tr>
+<tr><td>FAO ASI</td><td class='num'>-0.78</td><td class='num'>0.60</td><td class='num'>+0.54</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.65</td><td class='num'>0.81</td><td class='num'>0.59</td></tr>
+<tr><td>FAO mean VHI</td><td class='num'>+0.74</td><td class='num'>0.54</td><td class='num'>+0.46</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.64</td><td class='num'>0.80</td><td class='num'>0.60</td></tr>
+<tr><td>Rainfall (CHIRPS/ASAP)</td><td class='num'>+0.65</td><td class='num'>0.42</td><td class='num'>+0.32</td><td><span class='tag sig'>0.001</span></td><td class='num'>0.58</td><td class='num'>0.60</td><td class='num'>0.58</td></tr>
+<tr><td>Rainfall (ERA5)</td><td class='num'>+0.72</td><td class='num'>0.52</td><td class='num'>+0.44</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.64</td><td class='num'>0.71</td><td class='num'>0.59</td></tr>
+<tr><td>SPI-3</td><td class='num'>+0.73</td><td class='num'>0.53</td><td class='num'>+0.45</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.56</td><td class='num'>0.64</td><td class='num'>0.51</td></tr>
+<tr><td>Water balance</td><td class='num'>+0.66</td><td class='num'>0.44</td><td class='num'>+0.33</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.60</td><td class='num'>0.78</td><td class='num'>0.52</td></tr>
+</table></div>
+<div class='tblwrap'><table><tr><th>Combination</th><th class='num'>R²</th><th class='num'>Leave-one-out R²</th><th>Coefficients (z per sd)</th></tr>
+<tr><td>Temperature + Biomass (zFPARc)</td><td class='num'>0.54</td><td class='num'>+0.42</td><td>-11.37 (p 0.003), +7.93 (p 0.029)</td></tr>
+<tr><td>Temperature + Rainfall (CHIRPS/ASAP)</td><td class='num'>0.51</td><td class='num'>+0.37</td><td>-8.56 (p 0.059), +8.48 (p 0.061)</td></tr>
+<tr><td>Temperature + FAO ASI</td><td class='num'>0.64</td><td class='num'>+0.55</td><td>-5.47 (p 0.153), -13.28 (p 0.002)</td></tr>
+<tr><td>Biomass (zFPARc) + Rainfall (CHIRPS/ASAP)</td><td class='num'>0.49</td><td class='num'>+0.35</td><td>+6.50 (p 0.105), +10.86 (p 0.010)</td></tr>
+<tr><td>Temperature + Biomass (zFPARc) + Rainfall (CHIRPS/ASAP)</td><td class='num'>0.57</td><td class='num'>+0.41</td><td>-8.30 (p 0.056), +6.24 (p 0.098), +5.67 (p 0.213)</td></tr>
+<tr><td>Temperature + FAO mean VHI</td><td class='num'>0.59</td><td class='num'>+0.47</td><td>-6.46 (p 0.113), +11.78 (p 0.007)</td></tr>
+</table></div>
+<h3>Hot vs cool, low vs high biomass (median splits)</h3><div class='tblwrap'><table><tr><th>Quadrant</th><th class='num'>Seasons</th><th class='num'>Mean production anomaly</th><th class='num'>Impact-season rate</th><th>Seasons</th></tr>
+<tr><td>hot / low biomass</td><td class='num'>7</td><td class='num'>-23.5%</td><td class='num'>43%</td><td>2001, 2004, 2006, 2008, 2011, 2021, 2022</td></tr>
+<tr><td>hot / high biomass</td><td class='num'>5</td><td class='num'>+3.3%</td><td class='num'>20%</td><td>2002, 2007, 2010, 2016, 2023</td></tr>
+<tr><td>cool / low biomass</td><td class='num'>5</td><td class='num'>+6.1%</td><td class='num'>20%</td><td>2012, 2014, 2017, 2018, 2024</td></tr>
+<tr><td>cool / high biomass</td><td class='num'>7</td><td class='num'>+16.1%</td><td class='num'>14%</td><td>2003, 2005, 2009, 2013, 2015, 2019, 2020</td></tr>
+</table></div>
+<p>Impact seasons (6): 2006, 2008, 2010, 2018, 2020, 2021.</p>
+<h2>National mean of ASAP units</h2>
+<div class='tblwrap'><table><tr><th>Indicator</th><th class='num'>r with production</th><th class='num'>R²</th><th class='num'>Leave-one-out R²</th><th>p</th><th class='num'>AUC, impact seasons</th><th class='num'>AUC, CERF-dated</th><th class='num'>AUC, EM-DAT</th></tr>
+<tr><td>Temperature</td><td class='num'>-0.70</td><td class='num'>0.50</td><td class='num'>+0.38</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.72</td><td class='num'>0.75</td><td class='num'>0.73</td></tr>
+<tr><td>Biomass (zFPARc)</td><td class='num'>+0.08</td><td class='num'>0.01</td><td class='num'>-0.17</td><td><span class='tag ns'>0.709</span></td><td class='num'>0.34</td><td class='num'>0.43</td><td class='num'>0.32</td></tr>
+<tr><td>FAO ASI</td><td class='num'>-0.78</td><td class='num'>0.61</td><td class='num'>+0.54</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.63</td><td class='num'>0.75</td><td class='num'>0.61</td></tr>
+<tr><td>FAO mean VHI</td><td class='num'>+0.76</td><td class='num'>0.58</td><td class='num'>+0.51</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.60</td><td class='num'>0.75</td><td class='num'>0.59</td></tr>
+<tr><td>Rainfall (CHIRPS/ASAP)</td><td class='num'>+0.62</td><td class='num'>0.38</td><td class='num'>+0.28</td><td><span class='tag sig'>0.001</span></td><td class='num'>0.56</td><td class='num'>0.51</td><td class='num'>0.62</td></tr>
+<tr><td>Rainfall (ERA5)</td><td class='num'>+0.67</td><td class='num'>0.45</td><td class='num'>+0.34</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.62</td><td class='num'>0.62</td><td class='num'>0.60</td></tr>
+<tr><td>SPI-3</td><td class='num'>+0.73</td><td class='num'>0.53</td><td class='num'>+0.45</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.66</td><td class='num'>0.60</td><td class='num'>0.65</td></tr>
+<tr><td>Water balance</td><td class='num'>+0.68</td><td class='num'>0.47</td><td class='num'>+0.38</td><td><span class='tag sig'>0.000</span></td><td class='num'>0.61</td><td class='num'>0.68</td><td class='num'>0.55</td></tr>
+</table></div>
+<div class='tblwrap'><table><tr><th>Combination</th><th class='num'>R²</th><th class='num'>Leave-one-out R²</th><th>Coefficients (z per sd)</th></tr>
+<tr><td>Temperature + Biomass (zFPARc)</td><td class='num'>0.63</td><td class='num'>+0.50</td><td>-18.28 (p 0.000), +8.39 (p 0.013)</td></tr>
+<tr><td>Temperature + Rainfall (CHIRPS/ASAP)</td><td class='num'>0.54</td><td class='num'>+0.39</td><td>-11.40 (p 0.015), +5.73 (p 0.198)</td></tr>
+<tr><td>Temperature + FAO ASI</td><td class='num'>0.68</td><td class='num'>+0.57</td><td>-7.27 (p 0.053), -12.13 (p 0.003)</td></tr>
+<tr><td>Biomass (zFPARc) + Rainfall (CHIRPS/ASAP)</td><td class='num'>0.39</td><td class='num'>+0.20</td><td>+2.31 (p 0.537), +13.43 (p 0.001)</td></tr>
+<tr><td>Temperature + Biomass (zFPARc) + Rainfall (CHIRPS/ASAP)</td><td class='num'>0.64</td><td class='num'>+0.44</td><td>-16.06 (p 0.002), +7.71 (p 0.028), +2.95 (p 0.478)</td></tr>
+<tr><td>Temperature + FAO mean VHI</td><td class='num'>0.65</td><td class='num'>+0.52</td><td>-7.38 (p 0.070), +11.43 (p 0.007)</td></tr>
+</table></div>
+<h3>Hot vs cool, low vs high biomass (median splits)</h3><div class='tblwrap'><table><tr><th>Quadrant</th><th class='num'>Seasons</th><th class='num'>Mean production anomaly</th><th class='num'>Impact-season rate</th><th>Seasons</th></tr>
+<tr><td>hot / low biomass</td><td class='num'>6</td><td class='num'>-22.2%</td><td class='num'>50%</td><td>2001, 2008, 2011, 2017, 2018, 2021</td></tr>
+<tr><td>hot / high biomass</td><td class='num'>6</td><td class='num'>-5.2%</td><td class='num'>33%</td><td>2002, 2004, 2006, 2007, 2010, 2022</td></tr>
+<tr><td>cool / low biomass</td><td class='num'>6</td><td class='num'>+15.1%</td><td class='num'>0%</td><td>2003, 2005, 2012, 2014, 2019, 2024</td></tr>
+<tr><td>cool / high biomass</td><td class='num'>6</td><td class='num'>+11.5%</td><td class='num'>17%</td><td>2009, 2013, 2015, 2016, 2020, 2023</td></tr>
+</table></div>
+<p>Impact seasons (6): 2006, 2008, 2010, 2018, 2020, 2021.</p>
+<h2>How impact records were dated to seasons</h2><div class='tblwrap'><table><tr><th>Record</th><th>Period</th><th class='num'>Season</th><th>Rule</th></tr>
+<tr><td>CERF 2006 Rapid Response $19.5M</td><td>2005-11-01 → 2006-05-28</td><td class='num'>2006</td><td>overlap</td></tr>
+<tr><td>CERF 2006 Rapid Response $12.8M</td><td>2005-11-01 → 2006-05-28</td><td class='num'>2006</td><td>overlap</td></tr>
+<tr><td>CERF 2008 Underfunded Emergencies $4.6M (undated)</td><td>2008-01-01 → </td><td class='num'>2007</td><td>undated: last-season-before-impact</td></tr>
+<tr><td>CERF 2008 Rapid Response $8.0M (undated)</td><td>2008-01-01 → </td><td class='num'>2007</td><td>undated: last-season-before-impact</td></tr>
+<tr><td>CERF 2010 Underfunded Emergencies $11.0M (undated)</td><td>2010-01-01 → </td><td class='num'>2009</td><td>undated: last-season-before-impact</td></tr>
+<tr><td>CERF 2018 Rapid Response $11.9M</td><td>2017-10-01 → 2018-05-28</td><td class='num'>2018</td><td>overlap</td></tr>
+<tr><td>CERF 2021 Rapid Response $15.0M</td><td>2020-10-01 → 2021-05-28</td><td class='num'>2021</td><td>overlap</td></tr>
+<tr><td>CERF 2025 Rapid Response $6.7M</td><td>2024-10-01 → 2025-05-28</td><td class='num'>2025</td><td>overlap</td></tr>
+<tr><td>EM-DAT 2000-9186-AFG (2580000 affected)</td><td>2000-05-01 → 2002-12-28</td><td class='num'>2000</td><td>last-season-before-impact</td></tr>
+<tr><td>EM-DAT 2006-9570-AFG (1900000 affected)</td><td>2006-07-01 → 2006-12-28</td><td class='num'>2006</td><td>last-season-before-impact</td></tr>
+<tr><td>EM-DAT 2008-9475-AFG (280000 affected)</td><td>2008-10-01 → 2008-10-28</td><td class='num'>2008</td><td>last-season-before-impact</td></tr>
+<tr><td>EM-DAT 2011-9312-AFG (1750000 affected)</td><td>2011-01-01 → 2011-08-28</td><td class='num'>2010</td><td>last-season-before-impact</td></tr>
+<tr><td>EM-DAT 2018-9278-AFG (13500000 affected)</td><td>2018-04-01 → 2019-07-28</td><td class='num'>2018</td><td>last-season-before-impact</td></tr>
+<tr><td>EM-DAT 2021-9116-AFG (11000000 affected)</td><td>2021-01-01 → 2023-05-28</td><td class='num'>2020</td><td>last-season-before-impact</td></tr>
+</table></div>
+<h2>Season table</h2><div class='tblwrap'><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>t_spring_aoi</th>
+      <th>t_dt_spring_aoi</th>
+      <th>rain_spring_aoi</th>
+      <th>wsi_spring_aoi</th>
+      <th>spi_spring_aoi</th>
+      <th>z_spring_aoi</th>
+      <th>z_dt_spring_aoi</th>
+      <th>t_spring_nat</th>
+      <th>t_dt_spring_nat</th>
+      <th>rain_spring_nat</th>
+      <th>wsi_spring_nat</th>
+      <th>spi_spring_nat</th>
+      <th>z_spring_nat</th>
+      <th>z_dt_spring_nat</th>
+      <th>era5_nat</th>
+      <th>era5_aoi</th>
+      <th>asi_nat</th>
+      <th>asi_aoi</th>
+      <th>mvhi_nat</th>
+      <th>mvhi_aoi</th>
+      <th>prod_anom</th>
+      <th>impact</th>
+      <th>impact_cerf</th>
+      <th>impact_emdat</th>
+      <th>impact_plus_undated</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2001</th>
+      <td>17.11</td>
+      <td>3.11</td>
+      <td>6.04</td>
+      <td>57.16</td>
+      <td>-1.65</td>
+      <td>-1.07</td>
+      <td>-1.25</td>
+      <td>14.02</td>
+      <td>2.36</td>
+      <td>9.32</td>
+      <td>63.71</td>
+      <td>-1.14</td>
+      <td>-0.70</td>
+      <td>-0.34</td>
+      <td>0.80</td>
+      <td>0.71</td>
+      <td>80.59</td>
+      <td>92.54</td>
+      <td>0.26</td>
+      <td>0.22</td>
+      <td>-48.74</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>14.91</td>
+      <td>0.81</td>
+      <td>17.51</td>
+      <td>82.30</td>
+      <td>0.33</td>
+      <td>0.71</td>
+      <td>0.55</td>
+      <td>13.27</td>
+      <td>1.51</td>
+      <td>15.07</td>
+      <td>74.85</td>
+      <td>0.15</td>
+      <td>-0.21</td>
+      <td>0.12</td>
+      <td>1.39</td>
+      <td>1.93</td>
+      <td>15.62</td>
+      <td>0.92</td>
+      <td>0.50</td>
+      <td>0.57</td>
+      <td>-16.06</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>12.59</td>
+      <td>-1.61</td>
+      <td>20.56</td>
+      <td>85.57</td>
+      <td>1.10</td>
+      <td>0.52</td>
+      <td>0.37</td>
+      <td>11.36</td>
+      <td>-0.49</td>
+      <td>19.89</td>
+      <td>77.41</td>
+      <td>0.72</td>
+      <td>-0.32</td>
+      <td>-0.02</td>
+      <td>1.67</td>
+      <td>2.35</td>
+      <td>3.88</td>
+      <td>0.07</td>
+      <td>0.60</td>
+      <td>0.68</td>
+      <td>5.97</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>14.94</td>
+      <td>0.64</td>
+      <td>8.82</td>
+      <td>65.74</td>
+      <td>-0.95</td>
+      <td>0.20</td>
+      <td>0.07</td>
+      <td>14.25</td>
+      <td>2.31</td>
+      <td>6.72</td>
+      <td>56.79</td>
+      <td>-1.67</td>
+      <td>-0.07</td>
+      <td>0.20</td>
+      <td>0.97</td>
+      <td>1.31</td>
+      <td>32.67</td>
+      <td>37.27</td>
+      <td>0.40</td>
+      <td>0.37</td>
+      <td>-29.05</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>14.28</td>
+      <td>-0.12</td>
+      <td>14.48</td>
+      <td>71.93</td>
+      <td>0.08</td>
+      <td>0.21</td>
+      <td>0.09</td>
+      <td>11.05</td>
+      <td>-0.98</td>
+      <td>16.47</td>
+      <td>75.82</td>
+      <td>0.16</td>
+      <td>-0.58</td>
+      <td>-0.34</td>
+      <td>1.94</td>
+      <td>1.80</td>
+      <td>0.79</td>
+      <td>0.82</td>
+      <td>0.55</td>
+      <td>0.54</td>
+      <td>23.56</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>15.98</td>
+      <td>1.48</td>
+      <td>9.37</td>
+      <td>71.32</td>
+      <td>-0.27</td>
+      <td>-0.09</td>
+      <td>-0.19</td>
+      <td>13.77</td>
+      <td>1.64</td>
+      <td>9.96</td>
+      <td>68.68</td>
+      <td>-0.38</td>
+      <td>0.07</td>
+      <td>0.28</td>
+      <td>0.99</td>
+      <td>1.15</td>
+      <td>38.79</td>
+      <td>31.89</td>
+      <td>0.37</td>
+      <td>0.37</td>
+      <td>-4.92</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>15.24</td>
+      <td>0.64</td>
+      <td>17.69</td>
+      <td>77.24</td>
+      <td>0.78</td>
+      <td>0.36</td>
+      <td>0.27</td>
+      <td>12.80</td>
+      <td>0.58</td>
+      <td>19.61</td>
+      <td>71.78</td>
+      <td>0.86</td>
+      <td>-0.02</td>
+      <td>0.16</td>
+      <td>1.51</td>
+      <td>1.58</td>
+      <td>42.47</td>
+      <td>34.14</td>
+      <td>0.37</td>
+      <td>0.39</td>
+      <td>23.83</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>17.19</td>
+      <td>2.49</td>
+      <td>6.61</td>
+      <td>57.61</td>
+      <td>-1.92</td>
+      <td>-1.30</td>
+      <td>-1.37</td>
+      <td>14.07</td>
+      <td>1.74</td>
+      <td>10.19</td>
+      <td>61.60</td>
+      <td>-1.26</td>
+      <td>-0.63</td>
+      <td>-0.48</td>
+      <td>0.95</td>
+      <td>0.89</td>
+      <td>82.18</td>
+      <td>96.23</td>
+      <td>0.22</td>
+      <td>0.16</td>
+      <td>-29.21</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>14.27</td>
+      <td>-0.52</td>
+      <td>26.92</td>
+      <td>89.06</td>
+      <td>1.47</td>
+      <td>0.65</td>
+      <td>0.60</td>
+      <td>11.75</td>
+      <td>-0.67</td>
+      <td>21.24</td>
+      <td>82.30</td>
+      <td>0.76</td>
+      <td>-0.02</td>
+      <td>0.10</td>
+      <td>1.94</td>
+      <td>2.67</td>
+      <td>0.63</td>
+      <td>0.63</td>
+      <td>0.69</td>
+      <td>0.69</td>
+      <td>33.63</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>16.04</td>
+      <td>1.15</td>
+      <td>13.93</td>
+      <td>78.63</td>
+      <td>0.56</td>
+      <td>0.88</td>
+      <td>0.84</td>
+      <td>14.06</td>
+      <td>1.55</td>
+      <td>13.41</td>
+      <td>69.16</td>
+      <td>0.06</td>
+      <td>0.62</td>
+      <td>0.71</td>
+      <td>1.39</td>
+      <td>1.78</td>
+      <td>5.06</td>
+      <td>0.63</td>
+      <td>0.57</td>
+      <td>0.57</td>
+      <td>16.99</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>15.52</td>
+      <td>0.52</td>
+      <td>9.70</td>
+      <td>63.14</td>
+      <td>-0.34</td>
+      <td>-1.14</td>
+      <td>-1.17</td>
+      <td>13.12</td>
+      <td>0.51</td>
+      <td>10.40</td>
+      <td>66.41</td>
+      <td>-0.15</td>
+      <td>-0.56</td>
+      <td>-0.50</td>
+      <td>1.05</td>
+      <td>0.98</td>
+      <td>48.65</td>
+      <td>60.12</td>
+      <td>0.35</td>
+      <td>0.30</td>
+      <td>-14.41</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>14.06</td>
+      <td>-1.03</td>
+      <td>14.95</td>
+      <td>75.56</td>
+      <td>0.02</td>
+      <td>-0.35</td>
+      <td>-0.37</td>
+      <td>11.14</td>
+      <td>-1.56</td>
+      <td>13.99</td>
+      <td>74.00</td>
+      <td>-0.20</td>
+      <td>-0.69</td>
+      <td>-0.66</td>
+      <td>1.45</td>
+      <td>1.84</td>
+      <td>9.86</td>
+      <td>7.59</td>
+      <td>0.51</td>
+      <td>0.50</td>
+      <td>24.92</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>14.36</td>
+      <td>-0.83</td>
+      <td>13.26</td>
+      <td>71.50</td>
+      <td>0.03</td>
+      <td>0.56</td>
+      <td>0.56</td>
+      <td>12.00</td>
+      <td>-0.80</td>
+      <td>15.93</td>
+      <td>76.89</td>
+      <td>0.54</td>
+      <td>0.19</td>
+      <td>0.19</td>
+      <td>1.41</td>
+      <td>1.56</td>
+      <td>3.41</td>
+      <td>5.19</td>
+      <td>0.58</td>
+      <td>0.55</td>
+      <td>25.26</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>14.26</td>
+      <td>-1.04</td>
+      <td>18.87</td>
+      <td>72.09</td>
+      <td>0.47</td>
+      <td>-0.57</td>
+      <td>-0.55</td>
+      <td>11.34</td>
+      <td>-1.55</td>
+      <td>23.99</td>
+      <td>80.03</td>
+      <td>0.68</td>
+      <td>-0.49</td>
+      <td>-0.52</td>
+      <td>2.18</td>
+      <td>2.32</td>
+      <td>8.31</td>
+      <td>14.99</td>
+      <td>0.54</td>
+      <td>0.46</td>
+      <td>27.53</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>14.61</td>
+      <td>-0.78</td>
+      <td>14.95</td>
+      <td>73.11</td>
+      <td>0.75</td>
+      <td>0.49</td>
+      <td>0.52</td>
+      <td>12.29</td>
+      <td>-0.70</td>
+      <td>14.48</td>
+      <td>75.41</td>
+      <td>0.42</td>
+      <td>0.13</td>
+      <td>0.07</td>
+      <td>1.54</td>
+      <td>1.66</td>
+      <td>3.22</td>
+      <td>1.92</td>
+      <td>0.55</td>
+      <td>0.53</td>
+      <td>8.79</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>15.98</td>
+      <td>0.49</td>
+      <td>17.94</td>
+      <td>71.13</td>
+      <td>0.08</td>
+      <td>0.86</td>
+      <td>0.91</td>
+      <td>13.38</td>
+      <td>0.30</td>
+      <td>22.19</td>
+      <td>76.32</td>
+      <td>0.43</td>
+      <td>0.83</td>
+      <td>0.74</td>
+      <td>2.08</td>
+      <td>2.20</td>
+      <td>2.66</td>
+      <td>3.03</td>
+      <td>0.57</td>
+      <td>0.56</td>
+      <td>4.01</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>15.48</td>
+      <td>-0.11</td>
+      <td>11.68</td>
+      <td>73.18</td>
+      <td>0.54</td>
+      <td>-0.26</td>
+      <td>-0.20</td>
+      <td>13.53</td>
+      <td>0.35</td>
+      <td>10.26</td>
+      <td>67.16</td>
+      <td>-0.10</td>
+      <td>-0.01</td>
+      <td>-0.13</td>
+      <td>1.19</td>
+      <td>1.32</td>
+      <td>11.34</td>
+      <td>9.20</td>
+      <td>0.47</td>
+      <td>0.45</td>
+      <td>-4.10</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2018</th>
+      <td>15.79</td>
+      <td>0.10</td>
+      <td>16.96</td>
+      <td>60.97</td>
+      <td>0.31</td>
+      <td>-1.19</td>
+      <td>-1.11</td>
+      <td>13.90</td>
+      <td>0.63</td>
+      <td>17.95</td>
+      <td>72.90</td>
+      <td>0.26</td>
+      <td>0.01</td>
+      <td>-0.14</td>
+      <td>1.54</td>
+      <td>1.69</td>
+      <td>46.54</td>
+      <td>73.73</td>
+      <td>0.37</td>
+      <td>0.25</td>
+      <td>-20.55</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2019</th>
+      <td>15.30</td>
+      <td>-0.49</td>
+      <td>23.96</td>
+      <td>87.21</td>
+      <td>1.39</td>
+      <td>0.41</td>
+      <td>0.50</td>
+      <td>12.09</td>
+      <td>-1.28</td>
+      <td>21.78</td>
+      <td>85.24</td>
+      <td>0.88</td>
+      <td>-0.02</td>
+      <td>-0.20</td>
+      <td>2.06</td>
+      <td>2.03</td>
+      <td>5.34</td>
+      <td>7.24</td>
+      <td>0.62</td>
+      <td>0.60</td>
+      <td>5.56</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2020</th>
+      <td>15.04</td>
+      <td>-0.85</td>
+      <td>22.36</td>
+      <td>78.11</td>
+      <td>0.79</td>
+      <td>0.26</td>
+      <td>0.37</td>
+      <td>12.28</td>
+      <td>-1.18</td>
+      <td>18.05</td>
+      <td>84.12</td>
+      <td>0.09</td>
+      <td>0.50</td>
+      <td>0.29</td>
+      <td>1.91</td>
+      <td>2.09</td>
+      <td>3.06</td>
+      <td>4.50</td>
+      <td>0.62</td>
+      <td>0.56</td>
+      <td>9.93</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2021</th>
+      <td>16.58</td>
+      <td>0.59</td>
+      <td>14.41</td>
+      <td>56.32</td>
+      <td>-0.31</td>
+      <td>-0.40</td>
+      <td>-0.29</td>
+      <td>14.13</td>
+      <td>0.57</td>
+      <td>18.09</td>
+      <td>63.24</td>
+      <td>-0.05</td>
+      <td>0.26</td>
+      <td>0.02</td>
+      <td>1.30</td>
+      <td>1.18</td>
+      <td>38.49</td>
+      <td>58.28</td>
+      <td>0.41</td>
+      <td>0.33</td>
+      <td>-16.31</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2022</th>
+      <td>16.44</td>
+      <td>0.35</td>
+      <td>9.72</td>
+      <td>51.02</td>
+      <td>-1.10</td>
+      <td>-0.10</td>
+      <td>0.04</td>
+      <td>15.23</td>
+      <td>1.58</td>
+      <td>8.98</td>
+      <td>51.37</td>
+      <td>-1.27</td>
+      <td>0.41</td>
+      <td>0.14</td>
+      <td>0.88</td>
+      <td>1.21</td>
+      <td>46.57</td>
+      <td>57.21</td>
+      <td>0.36</td>
+      <td>0.33</td>
+      <td>-22.15</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2023</th>
+      <td>17.00</td>
+      <td>0.81</td>
+      <td>5.76</td>
+      <td>47.63</td>
+      <td>-1.29</td>
+      <td>0.10</td>
+      <td>0.24</td>
+      <td>13.60</td>
+      <td>-0.14</td>
+      <td>8.04</td>
+      <td>57.27</td>
+      <td>-1.32</td>
+      <td>0.47</td>
+      <td>0.17</td>
+      <td>1.26</td>
+      <td>1.00</td>
+      <td>42.77</td>
+      <td>53.50</td>
+      <td>0.39</td>
+      <td>0.33</td>
+      <td>-12.45</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2024</th>
+      <td>14.08</td>
+      <td>-2.21</td>
+      <td>17.07</td>
+      <td>71.24</td>
+      <td>0.17</td>
+      <td>-0.71</td>
+      <td>-0.55</td>
+      <td>11.39</td>
+      <td>-2.45</td>
+      <td>21.94</td>
+      <td>79.97</td>
+      <td>0.71</td>
+      <td>-0.32</td>
+      <td>-0.65</td>
+      <td>2.32</td>
+      <td>2.01</td>
+      <td>14.30</td>
+      <td>28.89</td>
+      <td>0.55</td>
+      <td>0.46</td>
+      <td>2.89</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2025</th>
+      <td>16.04</td>
+      <td>-0.34</td>
+      <td>4.69</td>
+      <td>54.42</td>
+      <td>-1.41</td>
+      <td>-0.11</td>
+      <td>0.06</td>
+      <td>14.09</td>
+      <td>0.15</td>
+      <td>4.39</td>
+      <td>53.55</td>
+      <td>-1.56</td>
+      <td>0.47</td>
+      <td>0.11</td>
+      <td>0.89</td>
+      <td>1.12</td>
+      <td>47.71</td>
+      <td>60.07</td>
+      <td>0.37</td>
+      <td>0.32</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table></div></div></body></html>

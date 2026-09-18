@@ -1,0 +1,74 @@
+<h2>Reading the results</h2>
+<ul>
+  <li><strong>Where the weather explains the harvest, temperature is at the top.</strong>
+      Mauritania (leave-one-out R² 0.54 nationally, every indicator strong), Afghanistan (0.38;
+      ASI 0.60 in sample, SPI-3 0.53), Burkina Faso (0.23) and Niger (0.11, the strongest out-of-sample
+      skill of any indicator there). In these four the hot seasons are the poor harvests and,
+      where the impact record is sparse enough to test, the CERF seasons: AUC 0.72 to 0.80 for
+      temperature in Burkina Faso, Niger, Chad and Afghanistan.</li>
+  <li><strong>ASAP's biomass anomaly is the weakest indicator almost everywhere.</strong> Pooled
+      leave-one-out R² of 0.02; negative in eight of ten countries. It comes close to temperature
+      only in Mauritania, where every indicator works, and Chad, where neither does much. This is the indicator Burkina Faso and Chad trigger on. Its
+      cousin from FAO, the ASI, does much better, likely because ASI counts the share of cropland
+      under stress rather than averaging a z-score that carries a strong greening trend.</li>
+  <li><strong>Rainfall is a weaker predictor than either heat or vegetation health</strong>
+      everywhere except Kenya, where ERA5 rainfall over the long rains is the best indicator (in
+      sample R² 0.34) and temperature adds little. Kenya's maize is grown in the highlands, not the
+      arid counties the framework targets.</li>
+  <li><strong>Nothing works in Ethiopia or the Dry Corridor.</strong> Ethiopia's national cereal
+      production is a smooth growth curve dominated by highland Meher policy and area expansion;
+      its residual has no relation to any indicator, and CERF has responded to drought in 15 of 24
+      seasons, so the binary target is saturated too. Guatemala, Honduras and El Salvador produce
+      most of their maize outside the Dry Corridor departments, and the framework-area indicators
+      have no relation to national production. For these countries the test needs subnational
+      production, which is the data request this study points to.</li>
+  <li><strong>Heat and vegetation stress are complementary.</strong> Temperature plus ASI is the
+      best two-indicator combination in the pooled regression, and both coefficients stay
+      significant; temperature plus biomass or plus rainfall adds nothing to temperature alone.</li>
+</ul>
+
+<h2>What this means for trigger design</h2>
+<ul>
+  <li>A detrended growing-season temperature anomaly belongs in the candidate set for every
+      drought framework's observational window, alongside ASI or VHI. It is available at the same
+      time as the vegetation indices (ASAP updates every dekad), needs no new data agreement, and
+      in the Sahel it is the single indicator most tied to outcomes.</li>
+  <li>Where a framework triggers on ASAP's zFPARc alone, the backtest against outcomes should be
+      re-run with temperature and ASI as alternatives before the next revision. The Burkina Faso
+      case is worked through on the
+      <a href="https://ocha-dap.github.io/ds-aa-bfa-drought/heat-and-impact/">Burkina site</a>.</li>
+  <li>Temperature does not lead. On the Burkina Faso dekadal analysis heat coincides with dry
+      spells rather than preceding them, so this is an in-season observational indicator, not a
+      forecast-window one. The seasonal temperature forecasts have real skill, though, and a
+      forecast temperature arm is worth a separate test.</li>
+  <li>The impact record is the weak link. Subnational production series from national statistics
+      offices would allow the test at the scale the frameworks operate; the CERF supplement's
+      season dating is what makes the binary target usable at all.</li>
+</ul>
+
+<div class="callout warn">
+  <p><strong>Caveats.</strong> National production against framework-area indicators is a scale
+     mismatch, worst where the framework area is a small share of production (Ethiopia, Kenya,
+     Central America). FAOSTAT production carries reporting noise and, in several countries, is
+     itself partly estimated from weather. Twenty-four seasons per country; leave-one-out R² and
+     the pooled regression are the numbers to trust, single-country p-values are indicative. The
+     ASAP temperature series is ECMWF reanalysis-based; the team database's <code>era5_temp</code>
+     table was checked as a cross-reference for Ethiopia and turned out to hold precipitation-like
+     values, so it was not used. ASAP's per-admin export keys countries on a list position rather
+     than its published ids; the probing that established the right ids is recorded in the repo.
+     Impact-season dating rules are shown on each country page; a different convention moves a
+     few seasons by one year. Detrending temperature removes the warming trend; the question of
+     whether a fixed threshold would drift is the same as for biomass and is discussed on the
+     Burkina site.</p>
+</div>
+
+<div class="meta">
+  <p><strong>Sources and code.</strong> JRC ASAP indicator statistics export (Sept 2026 pull; ids
+     and levels in <code>data/config/asap_ids.json</code>); team Postgres <code>public.era5</code>
+     raster stats; FAO GIEWS ASIS country csv endpoints; FAOSTAT production bulk file (Dec 2025);
+     CERF OneGMS mirror with the CERF supplement's drought valid periods (dev DB, schema
+     <code>aa</code>); EM-DAT blob snapshot via <code>ocha-stratus</code>; framework areas and
+     seasons from the team knowledge base. Scripts in
+     <a href="https://github.com/OCHA-DAP/ds-aa-drought-indicators">OCHA-DAP/ds-aa-drought-indicators</a>.
+     Pages written 18 September 2026 by the OCHA Centre for Humanitarian Data.</p>
+</div>
