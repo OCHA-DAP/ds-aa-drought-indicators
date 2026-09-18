@@ -1,0 +1,28 @@
+   year-aggregate (23 y, r with FAOSTAT 0.897): t_dt r-0.73/loyo+0.44, z_dt r-0.15/loyo-0.14, rain r+0.54/loyo+0.14, wsi r+0.57/loyo+0.17, spi r+0.67/loyo+0.32, asi r-0.59/loyo+0.22, mvhi r+0.59/loyo+0.23
+   year-aggregate production: t_dt r-0.70/loyo+0.36, z_dt r+0.02/loyo-0.18, rain r+0.62/loyo+0.28, wsi r+0.72/loyo+0.43, spi r+0.72/loyo+0.44, asi r-0.75/loyo+0.48, mvhi r+0.77/loyo+0.53
+AFG: units 32 (35/37 matched) obs 725 [2002, 2024] | yield LOYO: t_dt +0.14, z_dt -0.04, rain +0.06, wsi +0.05, spi +0.10, asi +0.10, mvhi +0.09
+   year-aggregate (23 y, r with FAOSTAT 0.887): t_dt r-0.28/loyo-0.04, z_dt r-0.28/loyo-0.13, rain r+0.47/loyo+0.03, wsi r+0.29/loyo-0.05, spi r+0.35/loyo-0.11, asi r-0.28/loyo-0.07, mvhi r+0.27/loyo-0.08
+   year-aggregate production: t_dt r-0.48/loyo+0.12, z_dt r+0.04/loyo-0.20, rain r+0.44/loyo+0.00, wsi r+0.19/loyo-0.15, spi r+0.41/loyo+0.01, asi r-0.22/loyo-0.14, mvhi r+0.43/loyo+0.04
+BFA: units 45 (46/46 matched) obs 1031 [2001, 2023] | yield LOYO: t_dt -0.01, z_dt -0.02, rain +0.01, wsi +0.00, spi +0.00, asi +0.00, mvhi +0.01
+   year-aggregate (18 y, r with FAOSTAT 0.636): t_dt r+0.35/loyo-0.13, z_dt r+0.15/loyo-0.18, rain r-0.16/loyo-0.24, wsi r-0.01/loyo-0.29, spi r-0.18/loyo-0.26, asi r+0.13/loyo-0.36, mvhi r-0.09/loyo-0.29
+   year-aggregate production: t_dt r+0.15/loyo-0.28, z_dt r+0.23/loyo-0.14, rain r+0.17/loyo-0.20, wsi r+0.37/loyo-0.06, spi r+0.25/loyo-0.17, asi r-0.23/loyo-0.21, mvhi r+0.08/loyo-0.30
+ETH: units 43 (56/95 matched) obs 731 [2001, 2022] | yield LOYO: t_dt -0.01, z_dt -0.01, rain -0.02, wsi -0.03, spi -0.02, asi -0.04, mvhi -0.04
+   year-aggregate (21 y, r with FAOSTAT 0.712): t_dt r-0.14/loyo-0.16, z_dt r+0.16/loyo-0.16, rain r+0.33/loyo-0.04, wsi r-0.03/loyo-0.19, spi r+0.28/loyo-0.08, asi r-0.29/loyo-0.13, mvhi r+0.34/loyo-0.06
+   year-aggregate production: t_dt r+0.00/loyo-0.16, z_dt r+0.01/loyo-0.18, rain r+0.20/loyo-0.12, wsi r-0.11/loyo-0.14, spi r+0.13/loyo-0.14, asi r-0.22/loyo-0.14, mvhi r+0.27/loyo-0.10
+KEN: units 47 (48/52 matched) obs 964 [2001, 2021] | yield LOYO: t_dt -0.01, z_dt -0.00, rain -0.00, wsi -0.02, spi -0.00, asi +0.03, mvhi +0.03
+   year-aggregate (10 y, r with FAOSTAT nan): 
+   year-aggregate production: t_dt r+0.40/loyo-0.38, z_dt r-0.28/loyo-0.60, rain r+0.44/loyo-0.50, wsi r-0.22/loyo-1.19, spi r+0.45/loyo-0.57, asi r-0.11/loyo-0.46, mvhi r+0.21/loyo-0.62
+GTM: units 22 (22/22 matched) obs 219 [2002, 2025] | yield LOYO: 
+   year-aggregate (20 y, r with FAOSTAT 0.371): t_dt r-0.12/loyo-0.17, z_dt r+0.51/loyo+0.11, rain r+0.40/loyo-0.02, wsi r+0.05/loyo-0.20, spi r+0.43/loyo+0.03, asi r-0.29/loyo-0.08, mvhi r+0.28/loyo-0.09
+   year-aggregate production: t_dt r-0.23/loyo-0.15, z_dt r+0.36/loyo-0.02, rain r+0.39/loyo-0.16, wsi r+0.05/loyo-0.22, spi r+0.39/loyo-0.08, asi r-0.48/loyo+0.12, mvhi r+0.31/loyo-0.12
+SLV: units 28 (14/14 matched) obs 278 [2001, 2021] | yield LOYO: t_dt -0.09, z_dt +0.04, rain -0.01, wsi -0.10, spi +0.03, asi -0.06, mvhi -0.05
+   year-aggregate (24 y, r with FAOSTAT 0.85): t_dt r-0.29/loyo-0.03, z_dt r+0.26/loyo-0.05, rain r+0.34/loyo-0.01, wsi r+0.28/loyo-0.04, spi r+0.35/loyo-0.03, asi r-0.22/loyo-0.35, mvhi r+0.37/loyo+0.01
+   year-aggregate production: t_dt r-0.61/loyo+0.28, z_dt r+0.57/loyo+0.23, rain r+0.59/loyo+0.25, wsi r+0.57/loyo+0.23, spi r+0.60/loyo+0.24, asi r-0.52/loyo-0.20, mvhi r+0.70/loyo+0.41
+MRT: units 6 (7/11 matched) obs 143 [2001, 2024] | yield LOYO: t_dt -0.02, z_dt -0.04, rain -0.02, wsi -0.04, spi -0.03, asi -0.06, mvhi -0.00
+   year-aggregate (23 y, r with FAOSTAT 0.833): t_dt r-0.59/loyo+0.24, z_dt r+0.23/loyo-0.14, rain r+0.39/loyo-0.07, wsi r+0.64/loyo+0.34, spi r+0.39/loyo-0.01, asi r-0.54/loyo+0.17, mvhi r+0.59/loyo+0.25
+   year-aggregate production: t_dt r-0.30/loyo-0.06, z_dt r+0.15/loyo-0.14, rain r+0.15/loyo-0.17, wsi r+0.35/loyo-0.01, spi r+0.26/loyo-0.10, asi r-0.32/loyo-0.07, mvhi r+0.42/loyo+0.01
+NER: units 52 (69/90 matched) obs 931 [2001, 2023] | yield LOYO: t_dt +0.10, z_dt -0.01, rain -0.04, wsi +0.12, spi -0.03, asi +0.04, mvhi +0.07
+
+POOLED yield: {'t_dt': (-0.169, 0.017, 4801), 'z_dt': (0.117, 0.003, 4801), 'rain': (0.154, 0.015, 4801), 'wsi': (0.172, 0.019, 4801), 'spi': (0.155, 0.014, 4801), 'asi': (-0.19, 0.026, 4360), 'mvhi': (0.21, 0.036, 4360)}
+POOLED yield combos: {'t_dt+z_dt': (0.021, [-0.149, 0.081]), 't_dt+rain': (0.022, [-0.121, 0.09]), 't_dt+asi': (0.037, [-0.134, -0.14]), 't_dt+mvhi': (0.041, [-0.111, 0.16]), 'z_dt+rain': (0.02, [0.09, 0.136])}
+POOLED production: {'t_dt': (-0.15, 0.012), 'z_dt': (0.092, -0.002), 'rain': (0.144, 0.011), 'wsi': (0.158, 0.015), 'spi': (0.163, 0.017), 'asi': (-0.185, 0.024), 'mvhi': (0.203, 0.032)}

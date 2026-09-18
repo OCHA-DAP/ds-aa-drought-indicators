@@ -6,7 +6,7 @@ backtest of the indicators behind our triggers against national staple productio
 CERF drought allocations (dated to their rainfall-deficit season by `ds-cerf-supplement`) and
 EM-DAT drought events, 2001–2024.
 
-**Site:** https://ocha-dap.github.io/ds-aa-drought-indicators/ (landing) — the study is at `/indicators-vs-impact/`
+**Site:** https://ocha-dap.github.io/ds-aa-drought-indicators/ (landing) — the study is at `/indicators-vs-impact/`, the robustness follow-up (literature, subnational official yields, GDHY) at `/robustness/`
 
 Grew out of the Burkina Faso finding (`ds-aa-bfa-drought`, Sept 2026) that growing-season
 temperature explained cereal-production shortfalls and CERF seasons far better than the ASAP
@@ -27,6 +27,8 @@ interest, FAOSTAT staples, framework-documented bad years) are in `data/config/c
 | FAO ASI (% cropland stressed, annual) and mean VHI, admin 1 | FAO GIEWS ASIS country csv endpoints (`giews/earthobservation/asis/data/country/<ISO3>/MAP_ASI/DATA/…`) | `scripts/fetch_asis.sh` |
 | Production | FAOSTAT bulk `Production_Crops_Livestock_E_All_Data_(Normalized)` | staples per country summed, % from 2001–2024 linear trend |
 | CERF drought allocations | dev Postgres `aa.cerf_allocation` ⋈ `aa.cerf_supplement` (valid deficit period) | dated seasons = overlap with the main season; undated ones kept as a sensitivity |
+| Subnational production, area, yield (official statistics) | FEWS NET Data Warehouse `https://fdw.fews.net/api/cropproductionfacts/?country_code=<ISO2>&format=csv` | `scripts/panel.py`; TCD has no series, HND national-only to 2009, GTM production only; `Area Harvested` is often missing → fall back to planted area then the reported `Yield` |
+| Gridded yields 1981–2016, maize/wheat (secondary target) | GDHY v1.2/1.3, PANGAEA doi:10.1594/PANGAEA.909132 | `scripts/gdhy.py`; blends NDVI, so partly circular; no millet/sorghum |
 | EM-DAT drought events | team blob snapshot via `ocha_stratus.emdat` | dated to the last main season whose midpoint precedes the event start |
 
 ## Pipeline
@@ -36,7 +38,10 @@ uv sync
 # 1. raw pulls into a scratch dir $S (see scripts/fetch_*.sh and the build_tables docstring)
 uv run python scripts/build_tables.py $S      # tables/<ISO3>.csv, tables/impact_dating.csv
 uv run python scripts/analyse.py $S           # results/results.json, results/summary_table.csv
-uv run python scripts/make_site.py $S         # pages/ (landing + one page per country)
+uv run python scripts/make_site.py $S         # pages/indicators-vs-impact/ (report + one page per country)
+uv run python scripts/panel.py $S             # results/panel.json  (subnational official-statistics panel)
+uv run python scripts/gdhy.py $S              # results/gdhy.json   (GDHY cross-check; needs CODAB from blob)
+uv run python scripts/make_robustness.py $S   # pages/robustness/
 ```
 
 ## Method in one paragraph

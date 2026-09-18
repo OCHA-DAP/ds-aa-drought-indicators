@@ -131,6 +131,9 @@ for iso, c in CFG.items():
             if "z" in g: g["z_dt"] = theil_detrend(g, "z", 2001, 2025)
             parts.append(g)
         F = pd.concat(parts)
+        if sname == main["name"]:
+            os.makedirs(f"{OUT}/units", exist_ok=True)
+            F.merge(units, on="region_id").to_csv(f"{OUT}/units/{iso}.csv", index=False)   # per-unit season features for the subnational panel
         for scope, sel in [("aoi", aoi_units), ("nat", None)]:
             if scope == "aoi" and not sel: continue
             g = F[F.region_id.isin(sel)] if sel else F
