@@ -6,7 +6,7 @@ backtest of the indicators behind our triggers against national staple productio
 CERF drought allocations (dated to their rainfall-deficit season by `ds-cerf-supplement`) and
 EM-DAT drought events, 2001–2024.
 
-**Site:** https://ocha-dap.github.io/ds-aa-drought-indicators/
+**Site:** https://ocha-dap.github.io/ds-aa-drought-indicators/ (landing) — the study is at `/indicators-vs-impact/`
 
 Grew out of the Burkina Faso finding (`ds-aa-bfa-drought`, Sept 2026) that growing-season
 temperature explained cereal-production shortfalls and CERF seasons far better than the ASAP

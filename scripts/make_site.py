@@ -6,7 +6,7 @@ import numpy as np, pandas as pd
 S = sys.argv[1]; ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 R = json.load(open(f"{S}/results/results.json")); CFG = json.load(open(f"{ROOT}/data/config/countries.json")); CFG.pop("_notes", None)
 DATING = pd.read_csv(f"{S}/tables/impact_dating.csv")
-PAGES = f"{ROOT}/pages"; os.makedirs(PAGES, exist_ok=True)
+PAGES = f"{ROOT}/pages"; PRODUCT = "indicators-vs-impact"; PROD = f"{PAGES}/{PRODUCT}"; os.makedirs(PROD, exist_ok=True)
 esc = html.escape
 IND = {"t_dt": "Temperature", "z_dt": "Biomass (zFPARc)", "rain": "Rainfall (CHIRPS/ASAP)", "era5": "Rainfall (ERA5)", "wsi": "Water balance", "spi": "SPI-3", "asi": "FAO ASI", "mvhi": "FAO mean VHI"}
 SHORT = {"t_dt": "Temp.", "z_dt": "zFPARc", "rain": "Rain CHIRPS", "era5": "Rain ERA5", "wsi": "WSI", "spi": "SPI-3", "asi": "ASI", "mvhi": "VHI"}
@@ -42,13 +42,13 @@ def heatmap(metric, title, tid, lim, fmt, scope="nat"):
             o.append(f'<text x="{x + cw / 2}" y="{y + ch / 2 + 3.5}" text-anchor="middle" font-size="10" fill="{INK}">{fmt(v)}</text>')
     o.append("</svg>"); return "\n".join(o)
 
-def page(title, body, back="../"):
+def page(title, body, back="../", back_label="Drought indicators vs impact"):
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>{CSS}</style></head><body>
-<a class="home-link" href="{back}">← Drought indicators vs impact</a>
+<a class="home-link" href="{back}">← {esc(back_label)}</a>
 <div class="wrap">{body}</div></body></html>"""
 
 def fmt2(v): return f"{v:+.2f}"
@@ -92,8 +92,8 @@ for iso in countries:
         parts.append(f"<tr><td>{esc(x.record)}</td><td>{esc(str(x.start))} → {en}</td><td class='num'>{se}</td><td>{esc(x.basis)}</td></tr>")
     parts.append("</table></div>")
     parts.append("<h2>Season table</h2><div class='tblwrap'>" + T.round(2).to_html(border=0, classes="data") + "</div>")
-    os.makedirs(f"{PAGES}/{iso.lower()}", exist_ok=True)
-    open(f"{PAGES}/{iso.lower()}/index.html", "w").write(page(f"{c['name']} — drought indicators vs impact", "\n".join(parts)))
+    os.makedirs(f"{PROD}/{iso.lower()}", exist_ok=True)
+    open(f"{PROD}/{iso.lower()}/index.html", "w").write(page(f"{c['name']} — drought indicators vs impact", "\n".join(parts)))
 
 # ---------------- landing: summary
 P = R["_pooled"]
@@ -114,5 +114,5 @@ for k, v in P["regression"].items():
 body.append("</table></div>")
 body.append("<h2>Countries</h2><div class='grid'>" + "".join("<a class='k' href='%s/'><h2>%s</h2><p>%s</p><span class='foot'><em>/%s/</em></span></a>" % (iso.lower(), esc(CFG[iso]["name"]), esc(CFG[iso]["framework"]), iso.lower()) for iso in countries) + "</div>")
 if os.path.exists(f"{ROOT}/pages/_landing_outro.html"): body.append(open(f"{ROOT}/pages/_landing_outro.html").read())
-open(f"{PAGES}/index.html", "w").write(page("Drought indicators vs impact", "\n".join(body), back="./"))
+open(f"{PROD}/index.html", "w").write(page("Drought indicators vs impact", "\n".join(body), back="../", back_label="Drought AA indicators"))
 print("site written:", countries)

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Drought indicators vs impact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>:root { color-scheme: light;
+  --b5:#269777; --b6:#1e795f; --b7:#18614c; --b05:#e9f5f1; --b1:#d4eae4;
+  --n9:#1f2324; --n8:#3f4748; --n7:#5e6a6b; --n6:#7e8e8f; --n15:#e2e8e8; --n1:#ebeff0; --n05:#f5f7f7;
+  --w05:#fbf4ea; --w5:#d48f2a; --w7:#7f5619; --e05:#f9eceb; --e6:#9d372b; --e7:#762920; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--n05); color: var(--n9); font: 400 15px/1.55 'Roboto', system-ui, sans-serif; }
+.home-link { display: inline-block; margin: 10px 12px; padding: 6px 12px; font: 500 13px/1 'Roboto', system-ui, sans-serif;
+  color: var(--b6); background: var(--b05); border: 1px solid var(--b1); border-radius: 4px; text-decoration: none; }
+.home-link:hover { background: var(--b1); }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 16px 56px; }
+h1 { font-family: 'Merriweather', Georgia, serif; font-size: 26px; font-weight: 700; line-height: 1.25; margin: 8px 0 6px; text-wrap: balance; }
+h2 { font-size: 19px; font-weight: 700; margin: 36px 0 8px; color: var(--b7); border-bottom: 2px solid var(--b1); padding-bottom: 5px; }
+h3 { font-size: 15.5px; font-weight: 700; margin: 20px 0 6px; }
+.sub { color: var(--n7); margin: 2px 0 18px; max-width: 80ch; }
+p, li { max-width: 82ch; }
+a { color: var(--b6); }
+.callout { background: #fff; border: 1px solid var(--n15); border-left: 4px solid var(--b6); border-radius: 4px; padding: 12px 16px; margin: 16px 0; }
+.callout.warn { border-left-color: var(--w5); }
+.callout p { margin: 6px 0; }
+table { border-collapse: collapse; width: 100%; margin: 14px 0 6px; background: #fff; border: 1px solid var(--n15); font-size: 13px; }
+th, td { padding: 6px 9px; border-bottom: 1px solid var(--n1); text-align: left; vertical-align: top; }
+th { background: var(--n05); font-weight: 500; color: var(--n8); }
+tr:last-child td { border-bottom: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.data { font-size: 11.5px; } table.data th, table.data td { padding: 3px 6px; text-align: right; }
+.tblwrap { overflow-x: auto; }
+.tag { display: inline-block; font-size: 11.5px; font-weight: 500; padding: 1px 7px; border-radius: 9px; white-space: nowrap; }
+.tag.sig { background: var(--e05); color: var(--e7); }
+.tag.ns { background: var(--n1); color: var(--n7); }
+figure { margin: 18px 0; background: #fff; border: 1px solid var(--n15); border-radius: 6px; padding: 14px 12px 8px; }
+figure svg { display: block; margin: 0 auto; }
+figcaption { color: var(--n7); font-size: 13px; padding: 10px 6px 2px; max-width: 100ch; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin: 14px 0; }
+.k { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; border: 1px solid #e2e7e7; border-top: 3px solid var(--b5); border-radius: 5px; padding: 14px 16px 12px; }
+.k:hover { box-shadow: 0 4px 20px rgba(31,35,36,.10); }
+.k h2 { font-family: 'Merriweather', Georgia, serif; margin: 0 0 6px; font-size: 15px; border: 0; padding: 0; color: var(--b6); }
+.k p { margin: 0 0 10px; font-size: 12.5px; color: var(--n8); flex: 1; }
+.k .foot { font-size: 10.5px; color: var(--n7); text-transform: uppercase; letter-spacing: .06em; border-top: 1px solid #f0f3f3; padding-top: 8px; }
+.k .foot em { font-style: normal; color: var(--b5); font-weight: 500; }
+.meta { color: var(--n7); font-size: 13px; border-top: 1px solid var(--n15); padding-top: 14px; margin-top: 40px; }
+code { background: var(--n1); padding: 1px 5px; border-radius: 3px; font-size: 12.5px; }
+@media (max-width: 640px) { h1 { font-size: 22px; } th, td { padding: 5px 6px; } }
+</style></head><body>
+<a class="home-link" href="../">← Drought AA indicators</a>
+<div class="wrap"><h1>Do temperature, rainfall and vegetation indicators predict drought impact?</h1>
+<p class="sub">A cross-country backtest for the ten countries where OCHA has an endorsed or in-development
+   drought anticipatory-action framework: Afghanistan, Burkina Faso, Chad, El Salvador, Ethiopia,
+   Guatemala, Honduras, Kenya, Mauritania and Niger. Every indicator behind our triggers, plus
+   growing-season temperature, tested against real outcomes: national staple production
+   (FAOSTAT, 2001 to 2024), CERF drought allocations dated to their deficit season, and EM-DAT
+   drought events.</p>
+
+<div class="callout">
+  <p><strong>Bottom line.</strong> Our drought triggers key on rainfall and satellite vegetation.
+     Across the ten countries, growing-season <strong>temperature</strong> is as good a predictor of
+     staple-production shortfalls as the best vegetation index and better than any rainfall measure,
+     and it is not what any framework uses. Pooled over 240 country-seasons, detrended temperature
+     explains 13 percent of production variance out of sample; FAO's Agricultural Stress Index 14,
+     mean VHI 13, ERA5 rainfall, SPI-3 and water balance 9 each, and ASAP's cumulative-FPAR
+     biomass anomaly, the indicator two of our frameworks trigger on, 2 percent. Temperature and
+     ASI together reach 19 percent and each keeps its own coefficient, so they carry different
+     information. The strength is uneven: the signal is strong in the Sahel and Afghanistan,
+     moderate in Chad and Kenya, and absent in Ethiopia and the Central American Dry Corridor,
+     where national production does not follow the framework area's weather. Impact seasons are
+     harder to rank than production because in several countries CERF has responded to drought in
+     most years; where they are rare enough to test, temperature ranks them best in Burkina Faso,
+     Niger, Chad and Afghanistan.</p>
+</div>
+
+<h2>What was tested</h2>
+<ul>
+  <li><strong>Indicators</strong>, all from the JRC ASAP per-admin export (one consistent route,
+      2001 onward): temperature (ECMWF reanalysis, cropland), rainfall (CHIRPS), SPI-3, water
+      satisfaction index (WSI), cumulative-FPAR anomaly (zFPARc, cropland and rangeland). Plus ERA5
+      monthly rainfall from the team database, and FAO GIEWS ASIS: the Agricultural Stress Index
+      (share of cropland under stress in the season) and mean VHI, at admin 1. Temperature is
+      detrended per unit (Theil-Sen, 1991 to 2025), biomass per unit (2001 to 2025), so that
+      "hot" means hotter than that year would be expected to be.</li>
+  <li><strong>Season and area.</strong> Each country's main growing season (dekads in
+      <code>data/config/countries.json</code>); indicators averaged over the framework area and
+      over the national mean of ASAP units. Biomass, WSI and SPI-3 are averaged over the last 60
+      percent of the season, where the trigger windows sit.</li>
+  <li><strong>Targets.</strong> Continuous: national production of the country's staples
+      (millet and sorghum in the Sahel, wheat in Afghanistan, maize and beans in Central America,
+      maize in Kenya, all cereals in Ethiopia), as the percentage departure from a 2001 to 2024
+      linear trend. Binary: growing seasons with a CERF drought allocation dated to that season by
+      the CERF supplement's rainfall-deficit period, or an EM-DAT drought event whose start follows
+      that season. Undated chronic allocations are a sensitivity only.</li>
+  <li><strong>Statistics.</strong> Ordinary least squares on standardised predictors with
+      leave-one-out R² (the honest number with 24 seasons), AUC for the binary target, and a pooled
+      regression with every series standardised within its country so that only within-country
+      year-to-year variation is compared.</li>
+</ul>
+
+<h2>Cross-country summary</h2>
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 762 314" width="100%" style="max-width:762px" font-family="Roboto,system-ui,sans-serif" role="img" aria-labelledby="h1"><title id="h1">Leave-one-out R² of each indicator against the national staple production anomaly, main season, national mean</title>
+<text x="187.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">Temp.</text>
+<text x="261.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">zFPARc</text>
+<text x="335.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">ASI</text>
+<text x="409.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">VHI</text>
+<text x="483.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">Rain CHIRPS</text>
+<text x="557.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">Rain ERA5</text>
+<text x="631.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">SPI-3</text>
+<text x="705.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">WSI</text>
+<text x="142" y="51.0" text-anchor="end" font-size="11" fill="#1f2324">Afghanistan</text>
+<rect x="151" y="35" width="72" height="24" rx="3" fill="#2a8068"><title>Afghanistan — Temperature: +0.38</title></rect>
+<text x="187.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.38</text>
+<rect x="225" y="35" width="72" height="24" rx="3" fill="#f4dedc"><title>Afghanistan — Biomass (zFPARc): -0.17</title></rect>
+<text x="261.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.17</text>
+<rect x="299" y="35" width="72" height="24" rx="3" fill="#1e795f"><title>Afghanistan — FAO ASI: +0.54</title></rect>
+<text x="335.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.54</text>
+<rect x="373" y="35" width="72" height="24" rx="3" fill="#1e795f"><title>Afghanistan — FAO mean VHI: +0.51</title></rect>
+<text x="409.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.51</text>
+<rect x="447" y="35" width="72" height="24" rx="3" fill="#5f9f8d"><title>Afghanistan — Rainfall (CHIRPS/ASAP): +0.28</title></rect>
+<text x="483.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.28</text>
+<rect x="521" y="35" width="72" height="24" rx="3" fill="#3e8c75"><title>Afghanistan — Rainfall (ERA5): +0.34</title></rect>
+<text x="557.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.34</text>
+<rect x="595" y="35" width="72" height="24" rx="3" fill="#1e795f"><title>Afghanistan — SPI-3: +0.45</title></rect>
+<text x="631.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.45</text>
+<rect x="669" y="35" width="72" height="24" rx="3" fill="#2a8067"><title>Afghanistan — Water balance: +0.38</title></rect>
+<text x="705.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.38</text>
+<text x="142" y="77.0" text-anchor="end" font-size="11" fill="#1f2324">Burkina Faso</text>
+<rect x="151" y="61" width="72" height="24" rx="3" fill="#7db1a3"><title>Burkina Faso — Temperature: +0.23</title></rect>
+<text x="187.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.23</text>
+<rect x="225" y="61" width="72" height="24" rx="3" fill="#f5e3e0"><title>Burkina Faso — Biomass (zFPARc): -0.15</title></rect>
+<text x="261.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.15</text>
+<rect x="299" y="61" width="72" height="24" rx="3" fill="#cbe0da"><title>Burkina Faso — FAO ASI: +0.09</title></rect>
+<text x="335.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.09</text>
+<rect x="373" y="61" width="72" height="24" rx="3" fill="#9ec5ba"><title>Burkina Faso — FAO mean VHI: +0.17</title></rect>
+<text x="409.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.17</text>
+<rect x="447" y="61" width="72" height="24" rx="3" fill="#f8fbfa"><title>Burkina Faso — Rainfall (CHIRPS/ASAP): +0.01</title></rect>
+<text x="483.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.01</text>
+<rect x="521" y="61" width="72" height="24" rx="3" fill="#e3eeeb"><title>Burkina Faso — Rainfall (ERA5): +0.05</title></rect>
+<text x="557.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.05</text>
+<rect x="595" y="61" width="72" height="24" rx="3" fill="#e6f0ed"><title>Burkina Faso — SPI-3: +0.04</title></rect>
+<text x="631.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.04</text>
+<rect x="669" y="61" width="72" height="24" rx="3" fill="#f1d4d0"><title>Burkina Faso — Water balance: -0.23</title></rect>
+<text x="705.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.23</text>
+<text x="142" y="103.0" text-anchor="end" font-size="11" fill="#1f2324">Ethiopia</text>
+<rect x="151" y="87" width="72" height="24" rx="3" fill="#f3dcd9"><title>Ethiopia — Temperature: -0.19</title></rect>
+<text x="187.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.19</text>
+<rect x="225" y="87" width="72" height="24" rx="3" fill="#f3dad8"><title>Ethiopia — Biomass (zFPARc): -0.20</title></rect>
+<text x="261.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.20</text>
+<rect x="299" y="87" width="72" height="24" rx="3" fill="#f7e6e4"><title>Ethiopia — FAO ASI: -0.13</title></rect>
+<text x="335.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.13</text>
+<rect x="373" y="87" width="72" height="24" rx="3" fill="#f1d5d2"><title>Ethiopia — FAO mean VHI: -0.22</title></rect>
+<text x="409.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.22</text>
+<rect x="447" y="87" width="72" height="24" rx="3" fill="#f5e2df"><title>Ethiopia — Rainfall (CHIRPS/ASAP): -0.16</title></rect>
+<text x="483.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.16</text>
+<rect x="521" y="87" width="72" height="24" rx="3" fill="#f6e3e1"><title>Ethiopia — Rainfall (ERA5): -0.15</title></rect>
+<text x="557.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.15</text>
+<rect x="595" y="87" width="72" height="24" rx="3" fill="#f5e1df"><title>Ethiopia — SPI-3: -0.16</title></rect>
+<text x="631.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.16</text>
+<rect x="669" y="87" width="72" height="24" rx="3" fill="#f6e4e2"><title>Ethiopia — Water balance: -0.14</title></rect>
+<text x="705.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.14</text>
+<text x="142" y="129.0" text-anchor="end" font-size="11" fill="#1f2324">Kenya</text>
+<rect x="151" y="113" width="72" height="24" rx="3" fill="#fefdfd"><title>Kenya — Temperature: -0.01</title></rect>
+<text x="187.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.01</text>
+<rect x="225" y="113" width="72" height="24" rx="3" fill="#fbf5f4"><title>Kenya — Biomass (zFPARc): -0.05</title></rect>
+<text x="261.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.05</text>
+<rect x="299" y="113" width="72" height="24" rx="3" fill="#e7f0ee"><title>Kenya — FAO ASI: +0.04</title></rect>
+<text x="335.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.04</text>
+<rect x="373" y="113" width="72" height="24" rx="3" fill="#c6ddd7"><title>Kenya — FAO mean VHI: +0.10</title></rect>
+<text x="409.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.10</text>
+<rect x="447" y="113" width="72" height="24" rx="3" fill="#aecfc5"><title>Kenya — Rainfall (CHIRPS/ASAP): +0.14</title></rect>
+<text x="483.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.14</text>
+<rect x="521" y="113" width="72" height="24" rx="3" fill="#8fbcaf"><title>Kenya — Rainfall (ERA5): +0.20</title></rect>
+<text x="557.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.20</text>
+<rect x="595" y="113" width="72" height="24" rx="3" fill="#d0e3dd"><title>Kenya — SPI-3: +0.08</title></rect>
+<text x="631.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.08</text>
+<rect x="669" y="113" width="72" height="24" rx="3" fill="#fcf8f8"><title>Kenya — Water balance: -0.04</title></rect>
+<text x="705.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.04</text>
+<text x="142" y="155.0" text-anchor="end" font-size="11" fill="#1f2324">Guatemala</text>
+<rect x="151" y="139" width="72" height="24" rx="3" fill="#f6e4e2"><title>Guatemala — Temperature: -0.14</title></rect>
+<text x="187.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.14</text>
+<rect x="225" y="139" width="72" height="24" rx="3" fill="#f6e4e2"><title>Guatemala — Biomass (zFPARc): -0.14</title></rect>
+<text x="261.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.14</text>
+<rect x="299" y="139" width="72" height="24" rx="3" fill="#b5d3cb"><title>Guatemala — FAO ASI: +0.13</title></rect>
+<text x="335.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.13</text>
+<rect x="373" y="139" width="72" height="24" rx="3" fill="#dae9e5"><title>Guatemala — FAO mean VHI: +0.07</title></rect>
+<text x="409.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.07</text>
+<rect x="447" y="139" width="72" height="24" rx="3" fill="#f7e8e6"><title>Guatemala — Rainfall (CHIRPS/ASAP): -0.12</title></rect>
+<text x="483.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.12</text>
+<rect x="521" y="139" width="72" height="24" rx="3" fill="#f8ebe9"><title>Guatemala — Rainfall (ERA5): -0.11</title></rect>
+<text x="557.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.11</text>
+<rect x="595" y="139" width="72" height="24" rx="3" fill="#faf0ee"><title>Guatemala — SPI-3: -0.08</title></rect>
+<text x="631.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.08</text>
+<rect x="669" y="139" width="72" height="24" rx="3" fill="#f3dcda"><title>Guatemala — Water balance: -0.18</title></rect>
+<text x="705.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.18</text>
+<text x="142" y="181.0" text-anchor="end" font-size="11" fill="#1f2324">Honduras</text>
+<rect x="151" y="165" width="72" height="24" rx="3" fill="#f5e1df"><title>Honduras — Temperature: -0.16</title></rect>
+<text x="187.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.16</text>
+<rect x="225" y="165" width="72" height="24" rx="3" fill="#f8fbfa"><title>Honduras — Biomass (zFPARc): +0.01</title></rect>
+<text x="261.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.01</text>
+<rect x="299" y="165" width="72" height="24" rx="3" fill="#f2d9d6"><title>Honduras — FAO ASI: -0.20</title></rect>
+<text x="335.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.20</text>
+<rect x="373" y="165" width="72" height="24" rx="3" fill="#f5e1df"><title>Honduras — FAO mean VHI: -0.16</title></rect>
+<text x="409.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.16</text>
+<rect x="447" y="165" width="72" height="24" rx="3" fill="#f7e8e7"><title>Honduras — Rainfall (CHIRPS/ASAP): -0.12</title></rect>
+<text x="483.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.12</text>
+<rect x="521" y="165" width="72" height="24" rx="3" fill="#f9edec"><title>Honduras — Rainfall (ERA5): -0.09</title></rect>
+<text x="557.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.09</text>
+<rect x="595" y="165" width="72" height="24" rx="3" fill="#f6e4e2"><title>Honduras — SPI-3: -0.14</title></rect>
+<text x="631.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.14</text>
+<rect x="669" y="165" width="72" height="24" rx="3" fill="#fbf3f2"><title>Honduras — Water balance: -0.06</title></rect>
+<text x="705.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.06</text>
+<text x="142" y="207.0" text-anchor="end" font-size="11" fill="#1f2324">El Salvador</text>
+<rect x="151" y="191" width="72" height="24" rx="3" fill="#f9edec"><title>El Salvador — Temperature: -0.09</title></rect>
+<text x="187.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.09</text>
+<rect x="225" y="191" width="72" height="24" rx="3" fill="#f9edec"><title>El Salvador — Biomass (zFPARc): -0.09</title></rect>
+<text x="261.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.09</text>
+<rect x="299" y="191" width="72" height="24" rx="3" fill="#e7b5af"><title>El Salvador — FAO ASI: -2.66</title></rect>
+<text x="335.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">-2.66</text>
+<rect x="373" y="191" width="72" height="24" rx="3" fill="#f8e9e8"><title>El Salvador — FAO mean VHI: -0.12</title></rect>
+<text x="409.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.12</text>
+<rect x="447" y="191" width="72" height="24" rx="3" fill="#f7e8e6"><title>El Salvador — Rainfall (CHIRPS/ASAP): -0.12</title></rect>
+<text x="483.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.12</text>
+<rect x="521" y="191" width="72" height="24" rx="3" fill="#f5e1df"><title>El Salvador — Rainfall (ERA5): -0.16</title></rect>
+<text x="557.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.16</text>
+<rect x="595" y="191" width="72" height="24" rx="3" fill="#f9eceb"><title>El Salvador — SPI-3: -0.10</title></rect>
+<text x="631.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.10</text>
+<rect x="669" y="191" width="72" height="24" rx="3" fill="#f3dcda"><title>El Salvador — Water balance: -0.18</title></rect>
+<text x="705.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.18</text>
+<text x="142" y="233.0" text-anchor="end" font-size="11" fill="#1f2324">Mauritania</text>
+<rect x="151" y="217" width="72" height="24" rx="3" fill="#1e795f"><title>Mauritania — Temperature: +0.54</title></rect>
+<text x="187.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.54</text>
+<rect x="225" y="217" width="72" height="24" rx="3" fill="#247d63"><title>Mauritania — Biomass (zFPARc): +0.39</title></rect>
+<text x="261.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.39</text>
+<rect x="299" y="217" width="72" height="24" rx="3" fill="#e7b5af"><title>Mauritania — FAO ASI: -1.03</title></rect>
+<text x="335.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">-1.03</text>
+<rect x="373" y="217" width="72" height="24" rx="3" fill="#1e795f"><title>Mauritania — FAO mean VHI: +0.41</title></rect>
+<text x="409.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.41</text>
+<rect x="447" y="217" width="72" height="24" rx="3" fill="#2b8168"><title>Mauritania — Rainfall (CHIRPS/ASAP): +0.38</title></rect>
+<text x="483.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.38</text>
+<rect x="521" y="217" width="72" height="24" rx="3" fill="#1e795f"><title>Mauritania — Rainfall (ERA5): +0.55</title></rect>
+<text x="557.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.55</text>
+<rect x="595" y="217" width="72" height="24" rx="3" fill="#1e795f"><title>Mauritania — SPI-3: +0.43</title></rect>
+<text x="631.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.43</text>
+<rect x="669" y="217" width="72" height="24" rx="3" fill="#1e795f"><title>Mauritania — Water balance: +0.47</title></rect>
+<text x="705.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.47</text>
+<text x="142" y="259.0" text-anchor="end" font-size="11" fill="#1f2324">Niger</text>
+<rect x="151" y="243" width="72" height="24" rx="3" fill="#c1dad3"><title>Niger — Temperature: +0.11</title></rect>
+<text x="187.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.11</text>
+<rect x="225" y="243" width="72" height="24" rx="3" fill="#f7e8e6"><title>Niger — Biomass (zFPARc): -0.12</title></rect>
+<text x="261.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.12</text>
+<rect x="299" y="243" width="72" height="24" rx="3" fill="#eaf2f0"><title>Niger — FAO ASI: +0.04</title></rect>
+<text x="335.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.04</text>
+<rect x="373" y="243" width="72" height="24" rx="3" fill="#faf2f1"><title>Niger — FAO mean VHI: -0.07</title></rect>
+<text x="409.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.07</text>
+<rect x="447" y="243" width="72" height="24" rx="3" fill="#f5e2e0"><title>Niger — Rainfall (CHIRPS/ASAP): -0.15</title></rect>
+<text x="483.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.15</text>
+<rect x="521" y="243" width="72" height="24" rx="3" fill="#e7b5af"><title>Niger — Rainfall (ERA5): -0.70</title></rect>
+<text x="557.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.70</text>
+<rect x="595" y="243" width="72" height="24" rx="3" fill="#f7e7e5"><title>Niger — SPI-3: -0.13</title></rect>
+<text x="631.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.13</text>
+<rect x="669" y="243" width="72" height="24" rx="3" fill="#e9f1ef"><title>Niger — Water balance: +0.04</title></rect>
+<text x="705.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.04</text>
+<text x="142" y="285.0" text-anchor="end" font-size="11" fill="#1f2324">Chad</text>
+<rect x="151" y="269" width="72" height="24" rx="3" fill="#fcf8f7"><title>Chad — Temperature: -0.04</title></rect>
+<text x="187.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.04</text>
+<rect x="225" y="269" width="72" height="24" rx="3" fill="#fcf8f8"><title>Chad — Biomass (zFPARc): -0.03</title></rect>
+<text x="261.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.03</text>
+<rect x="299" y="269" width="72" height="24" rx="3" fill="#faf0ef"><title>Chad — FAO ASI: -0.08</title></rect>
+<text x="335.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.08</text>
+<rect x="373" y="269" width="72" height="24" rx="3" fill="#faefee"><title>Chad — FAO mean VHI: -0.08</title></rect>
+<text x="409.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.08</text>
+<rect x="447" y="269" width="72" height="24" rx="3" fill="#efcfcc"><title>Chad — Rainfall (CHIRPS/ASAP): -0.26</title></rect>
+<text x="483.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.26</text>
+<rect x="521" y="269" width="72" height="24" rx="3" fill="#e7b5af"><title>Chad — Rainfall (ERA5): -0.64</title></rect>
+<text x="557.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.64</text>
+<rect x="595" y="269" width="72" height="24" rx="3" fill="#f8eae9"><title>Chad — SPI-3: -0.11</title></rect>
+<text x="631.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">-0.11</text>
+<rect x="669" y="269" width="72" height="24" rx="3" fill="#f6f9f9"><title>Chad — Water balance: +0.01</title></rect>
+<text x="705.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">+0.01</text>
+</svg><figcaption><strong>Figure 1.</strong> Leave-one-out R² of each single indicator against the national staple production anomaly (main growing season, national mean of ASAP units). Green = the indicator predicts production out of sample; red = worse than the mean. Hover for values.</figcaption></figure>
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 762 314" width="100%" style="max-width:762px" font-family="Roboto,system-ui,sans-serif" role="img" aria-labelledby="h2"><title id="h2">AUC of each indicator for ranking the impact seasons (CERF-dated and EM-DAT)</title>
+<text x="187.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">Temp.</text>
+<text x="261.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">zFPARc</text>
+<text x="335.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">ASI</text>
+<text x="409.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">VHI</text>
+<text x="483.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">Rain CHIRPS</text>
+<text x="557.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">Rain ERA5</text>
+<text x="631.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">SPI-3</text>
+<text x="705.0" y="24" text-anchor="middle" font-size="10" fill="#5e6a6b">WSI</text>
+<text x="142" y="51.0" text-anchor="end" font-size="11" fill="#1f2324">Afghanistan</text>
+<rect x="151" y="35" width="72" height="24" rx="3" fill="#82b4a6"><title>Afghanistan — Temperature: 0.72</title></rect>
+<text x="187.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">0.72</text>
+<rect x="225" y="35" width="72" height="24" rx="3" fill="#f5e1df"><title>Afghanistan — Biomass (zFPARc): 0.34</title></rect>
+<text x="261.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">0.34</text>
+<rect x="299" y="35" width="72" height="24" rx="3" fill="#b5d3cb"><title>Afghanistan — FAO ASI: 0.63</title></rect>
+<text x="335.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">0.63</text>
+<rect x="373" y="35" width="72" height="24" rx="3" fill="#c5dcd6"><title>Afghanistan — FAO mean VHI: 0.60</title></rect>
+<text x="409.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">0.60</text>
+<rect x="447" y="35" width="72" height="24" rx="3" fill="#dae9e5"><title>Afghanistan — Rainfall (CHIRPS/ASAP): 0.56</title></rect>
+<text x="483.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">0.56</text>
+<rect x="521" y="35" width="72" height="24" rx="3" fill="#bbd6cf"><title>Afghanistan — Rainfall (ERA5): 0.62</title></rect>
+<text x="557.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">0.62</text>
+<rect x="595" y="35" width="72" height="24" rx="3" fill="#a6cac0"><title>Afghanistan — SPI-3: 0.66</title></rect>
+<text x="631.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">0.66</text>
+<rect x="669" y="35" width="72" height="24" rx="3" fill="#c0d9d2"><title>Afghanistan — Water balance: 0.61</title></rect>
+<text x="705.0" y="50.5" text-anchor="middle" font-size="10" fill="#1f2324">0.61</text>
+<text x="142" y="77.0" text-anchor="end" font-size="11" fill="#1f2324">Burkina Faso</text>
+<rect x="151" y="61" width="72" height="24" rx="3" fill="#74ac9c"><title>Burkina Faso — Temperature: 0.75</title></rect>
+<text x="187.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">0.75</text>
+<rect x="225" y="61" width="72" height="24" rx="3" fill="#fcfdfd"><title>Burkina Faso — Biomass (zFPARc): 0.51</title></rect>
+<text x="261.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">0.51</text>
+<rect x="299" y="61" width="72" height="24" rx="3" fill="#c6ddd7"><title>Burkina Faso — FAO ASI: 0.60</title></rect>
+<text x="335.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">0.60</text>
+<rect x="373" y="61" width="72" height="24" rx="3" fill="#c0d9d2"><title>Burkina Faso — FAO mean VHI: 0.61</title></rect>
+<text x="409.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">0.61</text>
+<rect x="447" y="61" width="72" height="24" rx="3" fill="#79afa0"><title>Burkina Faso — Rainfall (CHIRPS/ASAP): 0.74</title></rect>
+<text x="483.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">0.74</text>
+<rect x="521" y="61" width="72" height="24" rx="3" fill="#79afa0"><title>Burkina Faso — Rainfall (ERA5): 0.74</title></rect>
+<text x="557.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">0.74</text>
+<rect x="595" y="61" width="72" height="24" rx="3" fill="#9dc4b9"><title>Burkina Faso — SPI-3: 0.67</title></rect>
+<text x="631.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">0.67</text>
+<rect x="669" y="61" width="72" height="24" rx="3" fill="#faf0ef"><title>Burkina Faso — Water balance: 0.42</title></rect>
+<text x="705.0" y="76.5" text-anchor="middle" font-size="10" fill="#1f2324">0.42</text>
+<text x="142" y="103.0" text-anchor="end" font-size="11" fill="#1f2324">Ethiopia</text>
+<rect x="151" y="87" width="72" height="24" rx="3" fill="#bad6ce"><title>Ethiopia — Temperature: 0.62</title></rect>
+<text x="187.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">0.62</text>
+<rect x="225" y="87" width="72" height="24" rx="3" fill="#f8ebe9"><title>Ethiopia — Biomass (zFPARc): 0.39</title></rect>
+<text x="261.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">0.39</text>
+<rect x="299" y="87" width="72" height="24" rx="3" fill="#f9edec"><title>Ethiopia — FAO ASI: 0.41</title></rect>
+<text x="335.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">0.41</text>
+<rect x="373" y="87" width="72" height="24" rx="3" fill="#f9edec"><title>Ethiopia — FAO mean VHI: 0.41</title></rect>
+<text x="409.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">0.41</text>
+<rect x="447" y="87" width="72" height="24" rx="3" fill="#fefefe"><title>Ethiopia — Rainfall (CHIRPS/ASAP): 0.50</title></rect>
+<text x="483.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">0.50</text>
+<rect x="521" y="87" width="72" height="24" rx="3" fill="#90bdb0"><title>Ethiopia — Rainfall (ERA5): 0.70</title></rect>
+<text x="557.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">0.70</text>
+<rect x="595" y="87" width="72" height="24" rx="3" fill="#fefcfc"><title>Ethiopia — SPI-3: 0.49</title></rect>
+<text x="631.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">0.49</text>
+<rect x="669" y="87" width="72" height="24" rx="3" fill="#e7f1ee"><title>Ethiopia — Water balance: 0.54</title></rect>
+<text x="705.0" y="102.5" text-anchor="middle" font-size="10" fill="#1f2324">0.54</text>
+<text x="142" y="129.0" text-anchor="end" font-size="11" fill="#1f2324">Kenya</text>
+<rect x="151" y="113" width="72" height="24" rx="3" fill="#d5e6e1"><title>Kenya — Temperature: 0.57</title></rect>
+<text x="187.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">0.57</text>
+<rect x="225" y="113" width="72" height="24" rx="3" fill="#f8ebe9"><title>Kenya — Biomass (zFPARc): 0.39</title></rect>
+<text x="261.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">0.39</text>
+<rect x="299" y="113" width="72" height="24" rx="3" fill="#fbf4f3"><title>Kenya — FAO ASI: 0.44</title></rect>
+<text x="335.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">0.44</text>
+<rect x="373" y="113" width="72" height="24" rx="3" fill="#fbf4f3"><title>Kenya — FAO mean VHI: 0.44</title></rect>
+<text x="409.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">0.44</text>
+<rect x="447" y="113" width="72" height="24" rx="3" fill="#fdfbfb"><title>Kenya — Rainfall (CHIRPS/ASAP): 0.48</title></rect>
+<text x="483.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">0.48</text>
+<rect x="521" y="113" width="72" height="24" rx="3" fill="#fdf9f8"><title>Kenya — Rainfall (ERA5): 0.47</title></rect>
+<text x="557.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">0.47</text>
+<rect x="595" y="113" width="72" height="24" rx="3" fill="#fcf7f7"><title>Kenya — SPI-3: 0.46</title></rect>
+<text x="631.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">0.46</text>
+<rect x="669" y="113" width="72" height="24" rx="3" fill="#fcf7f7"><title>Kenya — Water balance: 0.46</title></rect>
+<text x="705.0" y="128.5" text-anchor="middle" font-size="10" fill="#1f2324">0.46</text>
+<text x="142" y="155.0" text-anchor="end" font-size="11" fill="#1f2324">Guatemala</text>
+<rect x="151" y="139" width="72" height="24" rx="3" fill="#f2d8d5"><title>Guatemala — Temperature: 0.29</title></rect>
+<text x="187.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">0.29</text>
+<rect x="225" y="139" width="72" height="24" rx="3" fill="#e9f2ef"><title>Guatemala — Biomass (zFPARc): 0.54</title></rect>
+<text x="261.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">0.54</text>
+<rect x="299" y="139" width="72" height="24" rx="3" fill="#f6e3e1"><title>Guatemala — FAO ASI: 0.35</title></rect>
+<text x="335.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">0.35</text>
+<rect x="373" y="139" width="72" height="24" rx="3" fill="#fefcfc"><title>Guatemala — FAO mean VHI: 0.49</title></rect>
+<text x="409.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">0.49</text>
+<rect x="447" y="139" width="72" height="24" rx="3" fill="#b0d0c7"><title>Guatemala — Rainfall (CHIRPS/ASAP): 0.64</title></rect>
+<text x="483.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">0.64</text>
+<rect x="521" y="139" width="72" height="24" rx="3" fill="#90bdb0"><title>Guatemala — Rainfall (ERA5): 0.70</title></rect>
+<text x="557.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">0.70</text>
+<rect x="595" y="139" width="72" height="24" rx="3" fill="#bfd9d1"><title>Guatemala — SPI-3: 0.61</title></rect>
+<text x="631.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">0.61</text>
+<rect x="669" y="139" width="72" height="24" rx="3" fill="#fcf7f7"><title>Guatemala — Water balance: 0.46</title></rect>
+<text x="705.0" y="154.5" text-anchor="middle" font-size="10" fill="#1f2324">0.46</text>
+<text x="142" y="181.0" text-anchor="end" font-size="11" fill="#1f2324">Honduras</text>
+<rect x="151" y="165" width="72" height="24" rx="3" fill="#e7b7b1"><title>Honduras — Temperature: 0.11</title></rect>
+<text x="187.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">0.11</text>
+<rect x="225" y="165" width="72" height="24" rx="3" fill="#fdfbfb"><title>Honduras — Biomass (zFPARc): 0.48</title></rect>
+<text x="261.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">0.48</text>
+<rect x="299" y="165" width="72" height="24" rx="3" fill="#99c2b6"><title>Honduras — FAO ASI: 0.68</title></rect>
+<text x="335.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">0.68</text>
+<rect x="373" y="165" width="72" height="24" rx="3" fill="#88b8aa"><title>Honduras — FAO mean VHI: 0.71</title></rect>
+<text x="409.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">0.71</text>
+<rect x="447" y="165" width="72" height="24" rx="3" fill="#a1c7bc"><title>Honduras — Rainfall (CHIRPS/ASAP): 0.67</title></rect>
+<text x="483.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">0.67</text>
+<rect x="521" y="165" width="72" height="24" rx="3" fill="#99c2b6"><title>Honduras — Rainfall (ERA5): 0.68</title></rect>
+<text x="557.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">0.68</text>
+<rect x="595" y="165" width="72" height="24" rx="3" fill="#b5d3cb"><title>Honduras — SPI-3: 0.63</title></rect>
+<text x="631.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">0.63</text>
+<rect x="669" y="165" width="72" height="24" rx="3" fill="#fdfaf9"><title>Honduras — Water balance: 0.47</title></rect>
+<text x="705.0" y="180.5" text-anchor="middle" font-size="10" fill="#1f2324">0.47</text>
+<text x="142" y="207.0" text-anchor="end" font-size="11" fill="#1f2324">El Salvador</text>
+<rect x="151" y="191" width="72" height="24" rx="3" fill="#9cc4b9"><title>El Salvador — Temperature: 0.68</title></rect>
+<text x="187.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">0.68</text>
+<rect x="225" y="191" width="72" height="24" rx="3" fill="#ffffff"><title>El Salvador — Biomass (zFPARc): 0.50</title></rect>
+<text x="261.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">0.50</text>
+<rect x="299" y="191" width="72" height="24" rx="3" fill="#c6ddd7"><title>El Salvador — FAO ASI: 0.60</title></rect>
+<text x="335.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">0.60</text>
+<rect x="373" y="191" width="72" height="24" rx="3" fill="#c3dbd4"><title>El Salvador — FAO mean VHI: 0.61</title></rect>
+<text x="409.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">0.61</text>
+<rect x="447" y="191" width="72" height="24" rx="3" fill="#87b7a9"><title>El Salvador — Rainfall (CHIRPS/ASAP): 0.71</title></rect>
+<text x="483.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">0.71</text>
+<rect x="521" y="191" width="72" height="24" rx="3" fill="#72ab9b"><title>El Salvador — Rainfall (ERA5): 0.75</title></rect>
+<text x="557.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">0.75</text>
+<rect x="595" y="191" width="72" height="24" rx="3" fill="#a3c8be"><title>El Salvador — SPI-3: 0.66</title></rect>
+<text x="631.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">0.66</text>
+<rect x="669" y="191" width="72" height="24" rx="3" fill="#9cc4b9"><title>El Salvador — Water balance: 0.68</title></rect>
+<text x="705.0" y="206.5" text-anchor="middle" font-size="10" fill="#1f2324">0.68</text>
+<text x="142" y="233.0" text-anchor="end" font-size="11" fill="#1f2324">Mauritania</text>
+<rect x="151" y="217" width="72" height="24" rx="3" fill="#e0ece8"><title>Mauritania — Temperature: 0.56</title></rect>
+<text x="187.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">0.56</text>
+<rect x="225" y="217" width="72" height="24" rx="3" fill="#abcdc3"><title>Mauritania — Biomass (zFPARc): 0.65</title></rect>
+<text x="261.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">0.65</text>
+<rect x="299" y="217" width="72" height="24" rx="3" fill="#d3e4df"><title>Mauritania — FAO ASI: 0.58</title></rect>
+<text x="335.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">0.58</text>
+<rect x="373" y="217" width="72" height="24" rx="3" fill="#cee2dc"><title>Mauritania — FAO mean VHI: 0.59</title></rect>
+<text x="409.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">0.59</text>
+<rect x="447" y="217" width="72" height="24" rx="3" fill="#bdd7d0"><title>Mauritania — Rainfall (CHIRPS/ASAP): 0.62</title></rect>
+<text x="483.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">0.62</text>
+<rect x="521" y="217" width="72" height="24" rx="3" fill="#e4efec"><title>Mauritania — Rainfall (ERA5): 0.55</title></rect>
+<text x="557.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">0.55</text>
+<rect x="595" y="217" width="72" height="24" rx="3" fill="#c5dcd6"><title>Mauritania — SPI-3: 0.60</title></rect>
+<text x="631.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">0.60</text>
+<rect x="669" y="217" width="72" height="24" rx="3" fill="#edf4f2"><title>Mauritania — Water balance: 0.53</title></rect>
+<text x="705.0" y="232.5" text-anchor="middle" font-size="10" fill="#1f2324">0.53</text>
+<text x="142" y="259.0" text-anchor="end" font-size="11" fill="#1f2324">Niger</text>
+<rect x="151" y="243" width="72" height="24" rx="3" fill="#7bb0a1"><title>Niger — Temperature: 0.73</title></rect>
+<text x="187.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">0.73</text>
+<rect x="225" y="243" width="72" height="24" rx="3" fill="#7fb3a4"><title>Niger — Biomass (zFPARc): 0.73</title></rect>
+<text x="261.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">0.73</text>
+<rect x="299" y="243" width="72" height="24" rx="3" fill="#abcdc3"><title>Niger — FAO ASI: 0.65</title></rect>
+<text x="335.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">0.65</text>
+<rect x="373" y="243" width="72" height="24" rx="3" fill="#bed8d1"><title>Niger — FAO mean VHI: 0.61</title></rect>
+<text x="409.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">0.61</text>
+<rect x="447" y="243" width="72" height="24" rx="3" fill="#bad6ce"><title>Niger — Rainfall (CHIRPS/ASAP): 0.62</title></rect>
+<text x="483.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">0.62</text>
+<rect x="521" y="243" width="72" height="24" rx="3" fill="#d7e7e3"><title>Niger — Rainfall (ERA5): 0.57</title></rect>
+<text x="557.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">0.57</text>
+<rect x="595" y="243" width="72" height="24" rx="3" fill="#aecec5"><title>Niger — SPI-3: 0.64</title></rect>
+<text x="631.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">0.64</text>
+<rect x="669" y="243" width="72" height="24" rx="3" fill="#a9ccc2"><title>Niger — Water balance: 0.65</title></rect>
+<text x="705.0" y="258.5" text-anchor="middle" font-size="10" fill="#1f2324">0.65</text>
+<text x="142" y="285.0" text-anchor="end" font-size="11" fill="#1f2324">Chad</text>
+<rect x="151" y="269" width="72" height="24" rx="3" fill="#569a87"><title>Chad — Temperature: 0.80</title></rect>
+<text x="187.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">0.80</text>
+<rect x="225" y="269" width="72" height="24" rx="3" fill="#85b6a8"><title>Chad — Biomass (zFPARc): 0.72</title></rect>
+<text x="261.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">0.72</text>
+<rect x="299" y="269" width="72" height="24" rx="3" fill="#cce1db"><title>Chad — FAO ASI: 0.59</title></rect>
+<text x="335.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">0.59</text>
+<rect x="373" y="269" width="72" height="24" rx="3" fill="#94bfb3"><title>Chad — FAO mean VHI: 0.69</title></rect>
+<text x="409.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">0.69</text>
+<rect x="447" y="269" width="72" height="24" rx="3" fill="#b4d2ca"><title>Chad — Rainfall (CHIRPS/ASAP): 0.63</title></rect>
+<text x="483.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">0.63</text>
+<rect x="521" y="269" width="72" height="24" rx="3" fill="#6da897"><title>Chad — Rainfall (ERA5): 0.76</title></rect>
+<text x="557.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">0.76</text>
+<rect x="595" y="269" width="72" height="24" rx="3" fill="#8bbaad"><title>Chad — SPI-3: 0.70</title></rect>
+<text x="631.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">0.70</text>
+<rect x="669" y="269" width="72" height="24" rx="3" fill="#9dc4b9"><title>Chad — Water balance: 0.67</title></rect>
+<text x="705.0" y="284.5" text-anchor="middle" font-size="10" fill="#1f2324">0.67</text>
+</svg><figcaption><strong>Figure 2.</strong> AUC for ranking the impact seasons (CERF drought allocations dated to their deficit season, plus EM-DAT drought events): 0.5 is chance. Hover for values.</figcaption></figure>
+<h3>Pooled across countries (each series standardised within its country)</h3><div class='tblwrap'><table><tr><th>Indicator</th><th class='num'>n season-years</th><th class='num'>r</th><th class='num'>R²</th><th class='num'>Leave-one-out R²</th><th>p</th><th class='num'>AUC, impact seasons</th></tr>
+<tr><td>Temperature</td><td class='num'>240</td><td class='num'>-0.38</td><td class='num'>0.15</td><td class='num'>+0.13</td><td><span class='tag sig'>0.0000</span></td><td class='num'>0.56</td></tr>
+<tr><td>Biomass (zFPARc)</td><td class='num'>240</td><td class='num'>+0.19</td><td class='num'>0.04</td><td class='num'>+0.02</td><td><span class='tag sig'>0.0030</span></td><td class='num'>0.52</td></tr>
+<tr><td>FAO ASI</td><td class='num'>240</td><td class='num'>-0.40</td><td class='num'>0.16</td><td class='num'>+0.14</td><td><span class='tag sig'>0.0000</span></td><td class='num'>0.54</td></tr>
+<tr><td>FAO mean VHI</td><td class='num'>240</td><td class='num'>+0.38</td><td class='num'>0.15</td><td class='num'>+0.13</td><td><span class='tag sig'>0.0000</span></td><td class='num'>0.57</td></tr>
+<tr><td>Rainfall (CHIRPS/ASAP)</td><td class='num'>240</td><td class='num'>+0.28</td><td class='num'>0.08</td><td class='num'>+0.06</td><td><span class='tag sig'>0.0000</span></td><td class='num'>0.60</td></tr>
+<tr><td>Rainfall (ERA5)</td><td class='num'>240</td><td class='num'>+0.33</td><td class='num'>0.11</td><td class='num'>+0.09</td><td><span class='tag sig'>0.0000</span></td><td class='num'>0.62</td></tr>
+<tr><td>SPI-3</td><td class='num'>240</td><td class='num'>+0.33</td><td class='num'>0.11</td><td class='num'>+0.09</td><td><span class='tag sig'>0.0000</span></td><td class='num'>0.59</td></tr>
+<tr><td>Water balance</td><td class='num'>240</td><td class='num'>+0.33</td><td class='num'>0.11</td><td class='num'>+0.09</td><td><span class='tag sig'>0.0000</span></td><td class='num'>0.54</td></tr>
+</table></div><div class='tblwrap'><table><tr><th>Combination</th><th class='num'>R²</th><th class='num'>Leave-one-out R²</th><th>Coefficients</th></tr>
+<tr><td>Temperature + Biomass (zFPARc)</td><td class='num'>0.15</td><td class='num'>+0.13</td><td>-0.36 (p 0.0000), +0.07 (p 0.3135)</td></tr>
+<tr><td>Temperature + Rainfall (CHIRPS/ASAP)</td><td class='num'>0.15</td><td class='num'>+0.13</td><td>-0.33 (p 0.0000), +0.10 (p 0.1850)</td></tr>
+<tr><td>Temperature + FAO ASI</td><td class='num'>0.21</td><td class='num'>+0.19</td><td>-0.26 (p 0.0001), -0.28 (p 0.0000)</td></tr>
+<tr><td>Biomass (zFPARc) + Rainfall (CHIRPS/ASAP)</td><td class='num'>0.09</td><td class='num'>+0.07</td><td>+0.12 (p 0.0633), +0.24 (p 0.0002)</td></tr>
+<tr><td>Temperature + Biomass (zFPARc) + Rainfall (CHIRPS/ASAP)</td><td class='num'>0.16</td><td class='num'>+0.13</td><td>-0.32 (p 0.0000), +0.06 (p 0.3913), +0.09 (p 0.2249)</td></tr>
+<tr><td>Temperature + FAO mean VHI</td><td class='num'>0.19</td><td class='num'>+0.17</td><td>-0.25 (p 0.0003), +0.25 (p 0.0003)</td></tr>
+</table></div>
+<h2>Countries</h2><div class='grid'><a class='k' href='afg/'><h2>Afghanistan</h2><p>afg-drought 2026-04-04 (endorsed): SEAS5 MAM + CDI (ASI, VHI, ERA5 snow/soil moisture) over 5 northern provinces</p><span class='foot'><em>/afg/</em></span></a><a class='k' href='bfa/'><h2>Burkina Faso</h2><p>bfa-drought 2026-04-17 (endorsed): SEAS5 April + ASAP level 3 over 4 provinces</p><span class='foot'><em>/bfa/</em></span></a><a class='k' href='eth/'><h2>Ethiopia</h2><p>eth-drought 2026-06-09 (development): SEAS5 zone counts MAM/JJAS; OND via WFP/IRI</p><span class='foot'><em>/eth/</em></span></a><a class='k' href='ken/'><h2>Kenya</h2><p>ken-drought 2023-02-19 (development; IFRC EAP operational): KMD OND forecast over 23 ASAL counties</p><span class='foot'><em>/ken/</em></span></a><a class='k' href='gtm/'><h2>Guatemala</h2><p>lac-dry-corridor 2026-03-13 (endorsed): SEAS5 Primera/Postrera over 4 eastern departments</p><span class='foot'><em>/gtm/</em></span></a><a class='k' href='hnd/'><h2>Honduras</h2><p>lac-dry-corridor 2026-03-13 (endorsed)</p><span class='foot'><em>/hnd/</em></span></a><a class='k' href='slv/'><h2>El Salvador</h2><p>lac-dry-corridor 2026-03-13 (endorsed): national average</p><span class='foot'><em>/slv/</em></span></a><a class='k' href='mrt/'><h2>Mauritania</h2><p>mrt-drought 2026-04-17 (endorsed): ONM JAS forecast + CHIRPS national; activities in Guidimakha</p><span class='foot'><em>/mrt/</em></span></a><a class='k' href='ner/'><h2>Niger</h2><p>ner-drought (development): IRI forecast + ENACTS SPI, zone south of 17N</p><span class='foot'><em>/ner/</em></span></a><a class='k' href='tcd/'><h2>Chad</h2><p>tcd-drought 2025-03-03 (endorsed): SEAS5 JAS + GeoSahel biomass over 7 Sahelian provinces</p><span class='foot'><em>/tcd/</em></span></a></div>
+<h2>Reading the results</h2>
+<ul>
+  <li><strong>Where the weather explains the harvest, temperature is at the top.</strong>
+      Mauritania (leave-one-out R² 0.54 nationally, every indicator strong), Afghanistan (0.38;
+      ASI 0.60 in sample, SPI-3 0.53), Burkina Faso (0.23) and Niger (0.11, the strongest out-of-sample
+      skill of any indicator there). In these four the hot seasons are the poor harvests and,
+      where the impact record is sparse enough to test, the CERF seasons: AUC 0.72 to 0.80 for
+      temperature in Burkina Faso, Niger, Chad and Afghanistan.</li>
+  <li><strong>ASAP's biomass anomaly is the weakest indicator almost everywhere.</strong> Pooled
+      leave-one-out R² of 0.02; negative in eight of ten countries. It comes close to temperature
+      only in Mauritania, where every indicator works, and Chad, where neither does much. This is the indicator Burkina Faso and Chad trigger on. Its
+      cousin from FAO, the ASI, does much better, likely because ASI counts the share of cropland
+      under stress rather than averaging a z-score that carries a strong greening trend.</li>
+  <li><strong>Rainfall is a weaker predictor than either heat or vegetation health</strong>
+      everywhere except Kenya, where ERA5 rainfall over the long rains is the best indicator (in
+      sample R² 0.34) and temperature adds little. Kenya's maize is grown in the highlands, not the
+      arid counties the framework targets.</li>
+  <li><strong>Nothing works in Ethiopia or the Dry Corridor.</strong> Ethiopia's national cereal
+      production is a smooth growth curve dominated by highland Meher policy and area expansion;
+      its residual has no relation to any indicator, and CERF has responded to drought in 15 of 24
+      seasons, so the binary target is saturated too. Guatemala, Honduras and El Salvador produce
+      most of their maize outside the Dry Corridor departments, and the framework-area indicators
+      have no relation to national production. For these countries the test needs subnational
+      production, which is the data request this study points to.</li>
+  <li><strong>Heat and vegetation stress are complementary.</strong> Temperature plus ASI is the
+      best two-indicator combination in the pooled regression, and both coefficients stay
+      significant; temperature plus biomass or plus rainfall adds nothing to temperature alone.</li>
+</ul>
+
+<h2>What this means for trigger design</h2>
+<ul>
+  <li>A detrended growing-season temperature anomaly belongs in the candidate set for every
+      drought framework's observational window, alongside ASI or VHI. It is available at the same
+      time as the vegetation indices (ASAP updates every dekad), needs no new data agreement, and
+      in the Sahel it is the single indicator most tied to outcomes.</li>
+  <li>Where a framework triggers on ASAP's zFPARc alone, the backtest against outcomes should be
+      re-run with temperature and ASI as alternatives before the next revision. The Burkina Faso
+      case is worked through on the
+      <a href="https://ocha-dap.github.io/ds-aa-bfa-drought/heat-and-impact/">Burkina site</a>.</li>
+  <li>Temperature does not lead. On the Burkina Faso dekadal analysis heat coincides with dry
+      spells rather than preceding them, so this is an in-season observational indicator, not a
+      forecast-window one. The seasonal temperature forecasts have real skill, though, and a
+      forecast temperature arm is worth a separate test.</li>
+  <li>The impact record is the weak link. Subnational production series from national statistics
+      offices would allow the test at the scale the frameworks operate; the CERF supplement's
+      season dating is what makes the binary target usable at all.</li>
+</ul>
+
+<div class="callout warn">
+  <p><strong>Caveats.</strong> National production against framework-area indicators is a scale
+     mismatch, worst where the framework area is a small share of production (Ethiopia, Kenya,
+     Central America). FAOSTAT production carries reporting noise and, in several countries, is
+     itself partly estimated from weather. Twenty-four seasons per country; leave-one-out R² and
+     the pooled regression are the numbers to trust, single-country p-values are indicative. The
+     ASAP temperature series is ECMWF reanalysis-based; the team database's <code>era5_temp</code>
+     table was checked as a cross-reference for Ethiopia and turned out to hold precipitation-like
+     values, so it was not used. ASAP's per-admin export keys countries on a list position rather
+     than its published ids; the probing that established the right ids is recorded in the repo.
+     Impact-season dating rules are shown on each country page; a different convention moves a
+     few seasons by one year. Detrending temperature removes the warming trend; the question of
+     whether a fixed threshold would drift is the same as for biomass and is discussed on the
+     Burkina site.</p>
+</div>
+
+<div class="meta">
+  <p><strong>Sources and code.</strong> JRC ASAP indicator statistics export (Sept 2026 pull; ids
+     and levels in <code>data/config/asap_ids.json</code>); team Postgres <code>public.era5</code>
+     raster stats; FAO GIEWS ASIS country csv endpoints; FAOSTAT production bulk file (Dec 2025);
+     CERF OneGMS mirror with the CERF supplement's drought valid periods (dev DB, schema
+     <code>aa</code>); EM-DAT blob snapshot via <code>ocha-stratus</code>; framework areas and
+     seasons from the team knowledge base. Scripts in
+     <a href="https://github.com/OCHA-DAP/ds-aa-drought-indicators">OCHA-DAP/ds-aa-drought-indicators</a>.
+     Pages written 18 September 2026 by the OCHA Centre for Humanitarian Data.</p>
+</div>
+</div></body></html>
