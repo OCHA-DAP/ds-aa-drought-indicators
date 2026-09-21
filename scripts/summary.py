@@ -46,12 +46,12 @@ def pooled_auc(score_col_or_series, target):
     return (round(wins / pairs, 3) if pairs else None), pairs, used
 
 cols = {
-    "faostat": {"label": "National staple production (FAOSTAT)", "metric": "LOO R²", "kind": "continuous", "n": R["_pooled"]["regression"]["t_dt"]["n"], "note": "240 country-seasons, 10 countries; each series standardised within its country; leave-one-season-out."},
-    "impact": {"label": "Impact seasons: CERF drought allocation or EM-DAT event", "metric": "AUC", "kind": "binary"},
-    "bad_year": {"label": "Framework-documented bad years", "metric": "AUC", "kind": "binary"},
-    "fdw_all": {"label": "Official subnational yield, all units (FEWS NET DW)", "metric": "LOYO R²", "kind": "continuous", "n": PAN["_pooled"]["log_yield_w"]["single"]["t_dt"]["n"], "note": "~4,800 unit-years in 7 countries (Guatemala has no yield); within-unit detrended; leave-one-year-out."},
-    "fdw_aoi": {"label": "Official subnational yield, framework-area units only", "metric": "LOYO R²", "kind": "continuous"},
-    "gdhy": {"label": "GDHY gridded maize/wheat yield, admin 1 (secondary)", "metric": "LOYO R²", "kind": "continuous", "n": GD["_pooled"]["t_dt"]["n"], "note": "2001–2016, maize and wheat only, partly circular with NDVI."},
+    "faostat": {"short": "National<br>production<br>(FAOSTAT)", "label": "National staple production (FAOSTAT)", "metric": "LOO R²", "kind": "continuous", "n": R["_pooled"]["regression"]["t_dt"]["n"], "note": "240 country-seasons, 10 countries; each series standardised within its country; leave-one-season-out."},
+    "impact": {"short": "CERF /<br>EM-DAT<br>seasons", "label": "Impact seasons: CERF drought allocation or EM-DAT event", "metric": "AUC", "kind": "binary"},
+    "bad_year": {"short": "Framework<br>bad years", "label": "Framework-documented bad years", "metric": "AUC", "kind": "binary"},
+    "fdw_all": {"short": "Subnational<br>yield,<br>all units", "label": "Official subnational yield, all units (FEWS NET DW)", "metric": "LOYO R²", "kind": "continuous", "n": PAN["_pooled"]["log_yield_w"]["single"]["t_dt"]["n"], "note": "~4,800 unit-years in 7 countries (Guatemala has no yield); within-unit detrended; leave-one-year-out."},
+    "fdw_aoi": {"short": "Subnational<br>yield,<br>framework<br>areas", "label": "Official subnational yield, framework-area units only", "metric": "LOYO R²", "kind": "continuous"},
+    "gdhy": {"short": "GDHY<br>gridded<br>yield", "label": "GDHY gridded maize/wheat yield, admin 1 (secondary)", "metric": "LOYO R²", "kind": "continuous", "n": GD["_pooled"]["t_dt"]["n"], "note": "2001–2016, maize and wheat only, partly circular with NDVI."},
 }
 rows = {}
 A = PU[PU.in_aoi == True]; cols["fdw_aoi"]["n"] = int(A.log_yield_w.notna().sum()); cols["fdw_aoi"]["note"] = "%d unit-years in %s." % (cols["fdw_aoi"]["n"], ", ".join(sorted(A.iso3.unique())))

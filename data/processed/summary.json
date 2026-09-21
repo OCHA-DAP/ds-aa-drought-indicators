@@ -1,6 +1,7 @@
 {
  "columns": {
   "faostat": {
+   "short": "National<br>production<br>(FAOSTAT)",
    "label": "National staple production (FAOSTAT)",
    "metric": "LOO R\u00b2",
    "kind": "continuous",
@@ -8,6 +9,7 @@
    "note": "240 country-seasons, 10 countries; each series standardised within its country; leave-one-season-out."
   },
   "impact": {
+   "short": "CERF /<br>EM-DAT<br>seasons",
    "label": "Impact seasons: CERF drought allocation or EM-DAT event",
    "metric": "AUC",
    "kind": "binary",
@@ -15,6 +17,7 @@
    "note": "1276 within-country (positive, negative) season pairs from AFG, BFA, ETH, GTM, HND, KEN, MRT, NER, SLV, TCD; positives: 83 seasons."
   },
   "bad_year": {
+   "short": "Framework<br>bad years",
    "label": "Framework-documented bad years",
    "metric": "AUC",
    "kind": "binary",
@@ -22,6 +25,7 @@
    "note": "496 within-country (positive, negative) season pairs from BFA, GTM, HND, MRT, SLV; positives: 26 seasons."
   },
   "fdw_all": {
+   "short": "Subnational<br>yield,<br>all units",
    "label": "Official subnational yield, all units (FEWS NET DW)",
    "metric": "LOYO R\u00b2",
    "kind": "continuous",
@@ -29,6 +33,7 @@
    "note": "~4,800 unit-years in 7 countries (Guatemala has no yield); within-unit detrended; leave-one-year-out."
   },
   "fdw_aoi": {
+   "short": "Subnational<br>yield,<br>framework<br>areas",
    "label": "Official subnational yield, framework-area units only",
    "metric": "LOYO R\u00b2",
    "kind": "continuous",
@@ -36,6 +41,7 @@
    "note": "1173 unit-years in AFG, BFA, ETH, GTM, KEN, MRT."
   },
   "gdhy": {
+   "short": "GDHY<br>gridded<br>yield",
    "label": "GDHY gridded maize/wheat yield, admin 1 (secondary)",
    "metric": "LOYO R\u00b2",
    "kind": "continuous",
