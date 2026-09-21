@@ -178,8 +178,9 @@ for iso, spec in FDW.items():
     print(f"   year-aggregate ({agg['n_years']} y, r with FAOSTAT {agg.get('r_faostat')}): " + ", ".join(f"{k} r{v['r']:+.2f}/loyo{v['loyo']:+.2f}" for k, v in agg["single"].items()) + "\n   year-aggregate production: " + ", ".join(f"{k} r{v['r']:+.2f}/loyo{v['loyo']:+.2f}" for k, v in agg["single_prod"].items()))
     print(f"{iso}: units {res['n_units']} ({res['matched_units']}/{res['fdw_units']} matched) obs {res['n_obs']} {res['years']} | yield LOYO: " + ", ".join(f"{k} {v['loyo']:+.2f}" for k, v in s1.items()))
     rows.append(dict(iso3=iso, units=res["n_units"], obs=res["n_obs"], **{f"loyo_{k}": v["loyo"] for k, v in s1.items()}, **{f"r_{k}": v["r"] for k, v in s1.items()}))
-    pooled.append(P[["iso3", "unit", "year", "log_yield_w", "log_prod_w"] + [k + "_w" for k in cols]])
-PP = pd.concat(pooled); pool = {}
+    P["in_aoi"] = P.unit.isin(aoi_units) if aoi_units is not None else False
+    pooled.append(P[["iso3", "unit", "year", "in_aoi", "log_yield_w", "log_prod_w"] + [k + "_w" for k in cols]])
+PP = pd.concat(pooled); pool = {}; PP.to_csv(f"{OUT}/panel_units.csv", index=False)   # unit-year panel for summary.py
 for tgt in ["log_yield_w", "log_prod_w"]:
     pool[tgt] = {"single": {}, "combo": {}}
     for k in IND:

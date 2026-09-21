@@ -2,11 +2,14 @@
 
 Do temperature, rainfall, water balance and vegetation indicators predict drought **impact**
 across the countries where OCHA has a drought anticipatory-action framework? A cross-country
-backtest of the indicators behind our triggers against national staple production (FAOSTAT),
-CERF drought allocations (dated to their rainfall-deficit season by `ds-cerf-supplement`) and
-EM-DAT drought events, 2001–2024.
+backtest of the indicators behind our triggers against six ground truths: national staple
+production (FAOSTAT), CERF drought allocations (dated to their rainfall-deficit season by
+`ds-cerf-supplement`) and EM-DAT drought events, framework-documented bad years, official
+subnational yields (FEWS NET Data Warehouse) nationally and inside framework areas, and GDHY
+gridded yields, 2001–2024. Primary output: one matrix of out-of-sample R² (continuous targets)
+and within-country AUC (binary targets), pooled across countries.
 
-**Site:** https://ocha-dap.github.io/ds-aa-drought-indicators/ (landing) — the study is at `/indicators-vs-impact/`, the robustness follow-up (literature, subnational official yields, GDHY) at `/robustness/`
+**Site:** https://ocha-dap.github.io/ds-aa-drought-indicators/ (landing) — the consolidated report is at `/indicators-vs-impact/` (summary matrix of indicators × ground truths first, then per-country detail, the subnational panel, GDHY and the literature); `/robustness/` redirects there.
 
 Grew out of the Burkina Faso finding (`ds-aa-bfa-drought`, Sept 2026) that growing-season
 temperature explained cereal-production shortfalls and CERF seasons far better than the ASAP
@@ -38,10 +41,10 @@ uv sync
 # 1. raw pulls into a scratch dir $S (see scripts/fetch_*.sh and the build_tables docstring)
 uv run python scripts/build_tables.py $S      # tables/<ISO3>.csv, tables/impact_dating.csv
 uv run python scripts/analyse.py $S           # results/results.json, results/summary_table.csv
-uv run python scripts/make_site.py $S         # pages/indicators-vs-impact/ (report + one page per country)
-uv run python scripts/panel.py $S             # results/panel.json  (subnational official-statistics panel)
+uv run python scripts/panel.py $S             # results/panel.json + panel_units.csv (subnational official-statistics panel)
 uv run python scripts/gdhy.py $S              # results/gdhy.json   (GDHY cross-check; needs CODAB from blob)
-uv run python scripts/make_robustness.py $S   # pages/robustness/
+uv run python scripts/summary.py $S           # results/summary.json (the indicators × ground-truths matrix)
+uv run python scripts/make_site.py $S         # pages/indicators-vs-impact/ (report + one page per country)
 ```
 
 ## Method in one paragraph

@@ -1,0 +1,39 @@
+<h2>Reading the results</h2>
+<ul>
+  <li><strong>Production and the binary records disagree on the leader, and both are informative.</strong>
+      Temperature, ASI and VHI predict how bad the harvest is; rainfall and SPI-3 predict whether the season
+      was recorded as a drought. The two are not the same event: a hot, patchy-rain season with a poor harvest
+      may never become a CERF allocation, and the frameworks' documented bad years were chosen by people looking
+      at rainfall. The framework-bad-year column should be read as "agrees with how the framework already thinks",
+      not as an independent outcome.</li>
+  <li><strong>Where the weather explains the harvest, temperature is at the top.</strong> Mauritania
+      (leave-one-out R² 0.54 nationally), Afghanistan (0.38), Burkina Faso (0.23) and Niger (0.11). In these four
+      the hot seasons are the poor harvests, and the official subnational statistics, aggregated to the year,
+      say the same (temperature r −0.73 with aggregated yield in Afghanistan, −0.59 in Niger, −0.61 with
+      production in Mauritania, −0.48 in Burkina Faso). Where the impact record is sparse enough to test,
+      temperature also ranks the CERF seasons well there: AUC 0.72 to 0.80 in Burkina Faso, Niger, Chad and
+      Afghanistan.</li>
+  <li><strong>ASAP's biomass anomaly is the weakest indicator against every ground truth.</strong> Pooled
+      leave-one-out R² 0.02 on production, negative in eight of ten countries; the lowest AUC on both binary
+      targets; nothing within provinces. FAO's ASI and VHI do much better, and the reason is in their
+      construction: VHI is an equal blend of a vegetation condition index and a land-surface-temperature index,
+      so it already carries half the heat signal that zFPARc lacks.</li>
+  <li><strong>Rainfall is the weaker predictor of production everywhere except Kenya</strong>, where ERA5 rainfall
+      over the long rains is the best indicator and temperature adds little; Kenya's maize is grown in the
+      highlands, not the arid counties the framework targets.</li>
+  <li><strong>Nothing works in Ethiopia or the Dry Corridor, in any dataset.</strong> Ethiopia's national cereal
+      production is a smooth growth curve with no relation to any indicator, CERF has responded to drought in 15
+      of 24 seasons so the binary target is saturated, and the official zone-level Meher yields show nothing
+      either. Guatemala, Honduras and El Salvador produce most of their maize outside the Dry Corridor
+      departments, and neither the national nor the departmental series follow the framework-area weather.</li>
+  <li><strong>Within a province, no indicator predicts the year.</strong> Pooled over about 4,800 unit-years of
+      official yields, every coefficient has the expected sign and is significant, but the best leave-one-year-out
+      R² is 0.04. Official subnational statistics are noisy, and indicators averaged over a unit and a season miss
+      timing and location within it. Skill reappears inside small, exposed framework areas (Burkina Faso's four
+      trigger provinces: water balance 0.25, temperature 0.12; Afghanistan's five: ASI 0.33, temperature 0.19),
+      but the pooled framework-area column is dominated by the large Ethiopian and Kenyan areas and shows
+      nothing.</li>
+  <li><strong>Heat and vegetation stress are complementary.</strong> Temperature plus ASI is the best
+      two-indicator combination on production and both coefficients stay significant; temperature plus biomass or
+      plus rainfall adds nothing to temperature alone.</li>
+</ul>

@@ -1,0 +1,68 @@
+<h2>What this means for trigger design</h2>
+<ul>
+  <li>A detrended growing-season temperature anomaly belongs in the candidate set for every drought framework's
+      observational window, alongside ASI or VHI and a rainfall measure. It is available at the same time as the
+      vegetation indices (ASAP updates every dekad) and needs no new data agreement. In the Sahel and Afghanistan
+      it is the single indicator most tied to harvest outcomes.</li>
+  <li>Rainfall and SPI-3 remain the indicators most aligned with the humanitarian record. A trigger that must
+      match when CERF and partners will call a drought should keep a rainfall arm; one that aims at harvest
+      shortfall should add heat or use ASI/VHI.</li>
+  <li>Where a framework triggers on ASAP's zFPARc alone, the backtest should be re-run with temperature, ASI and
+      VHI as alternatives before the next revision. The Burkina Faso case is worked through on the
+      <a href="https://ocha-dap.github.io/ds-aa-bfa-drought/heat-and-impact/">Burkina site</a>.</li>
+  <li>Triggers defined on a handful of admin-2 units should not be expected to have much skill against locally
+      reported outcomes, whatever indicator they use. The evidence for skill is at the scale of a region or
+      country, or of a small area chosen for its exposure.</li>
+  <li>Temperature does not lead. On the Burkina Faso dekadal analysis heat coincides with dry spells rather than
+      preceding them, so this is an in-season observational indicator, not a forecast-window one; a forecast
+      temperature arm is worth a separate test.</li>
+  <li>Next ground truth: IPC phase 3+ population by admin unit (team database, from 2017) or FEWS NET
+      classifications would test the provincial question with less measurement noise, over a shorter record.</li>
+</ul>
+
+<div class="callout warn">
+  <p><strong>Caveats.</strong> National production against framework-area indicators is a scale mismatch, worst
+     where the framework area is a small share of production (Ethiopia, Kenya, Central America). FAOSTAT
+     production carries reporting noise and is in places partly estimated from weather; the official subnational
+     series carry more. Twenty-four seasons per country: out-of-sample R² and the pooled numbers are the ones to
+     trust, single-country p-values are indicative. The binary AUCs use only within-country season pairs, so a
+     country with CERF drought allocations in most years contributes few pairs. Framework bad years exist for five
+     countries only and were chosen with rainfall in mind. GDHY has no millet or sorghum, agrees weakly with
+     FAOSTAT here (r 0.2 to 0.6) and blends satellite NDVI, so it is a secondary check at most. The ASAP
+     temperature series is ECMWF reanalysis-based; the team database's <code>era5_temp</code> table holds
+     precipitation-like values for Ethiopia and was not used. ASAP's per-admin export keys countries on a list
+     position rather than its published ids; the ids used are recorded in the repo. Impact-season dating rules are
+     on each country page; a different convention moves a few seasons by one year.</p>
+</div>
+
+<h2>Data notes</h2>
+<ul>
+  <li><strong>Indicators.</strong> JRC ASAP per-admin indicator statistics export (September 2026 pull; ids and
+      levels in <code>data/config/asap_ids.json</code>): temperature (ECMWF, cropland), rainfall (CHIRPS), SPI-3,
+      water satisfaction index, cumulative-FPAR anomaly (zFPARc). Temperature detrended per unit with a Theil-Sen
+      slope over 1991 to 2025, biomass over 2001 to 2025. ERA5 monthly rainfall from the team Postgres
+      <code>public.era5</code>. FAO GIEWS ASIS country csv endpoints for ASI and mean VHI at admin 1. Indicators
+      averaged over each country's main season (dekads in <code>data/config/countries.json</code>); biomass, WSI
+      and SPI-3 over its last 60 percent.</li>
+  <li><strong>Ground truths.</strong> FAOSTAT production bulk file (December 2025), staples per country, percent
+      from a 2001 to 2024 linear trend. CERF drought allocations from the OneGMS mirror with the CERF supplement's
+      rainfall-deficit periods (dev DB, schema <code>aa</code>), dated to the overlapping main season; EM-DAT blob
+      snapshot via <code>ocha-stratus</code>, dated to the last main season before the event start; undated
+      chronic allocations excluded. Framework bad years from the team knowledge base. FEWS NET Data Warehouse
+      <code>cropproductionfacts</code> (18 September 2026): staples and main season per country at the finest
+      level with a usable series; yield is production over harvested area, falling back to planted area and to
+      the reported yield; "All (PS)" production-system rows used where present, other systems summed; series of
+      at least 8 years, detrended and standardised within the unit; Chad has no series, Honduras a national one
+      to 2009 only, Guatemala production without area, El Salvador's reporting changed in 2013 and Kenya's
+      districts became counties in 2013 (separate series). GDHY v1.2/1.3 (PANGAEA
+      <a href="https://doi.org/10.1594/PANGAEA.909132">doi:10.1594/PANGAEA.909132</a>), cells assigned to CODAB
+      admin 1 by centre, detrended 1996 to 2016, analysed 2001 to 2016.</li>
+  <li><strong>Statistics.</strong> Ordinary least squares on standardised predictors with leave-one-out R² for the
+      national series; within-unit detrended panels with leave-one-year-out R² (all units of a year held out
+      together); AUC from within-country (positive, negative) season pairs, indicators oriented so that higher
+      means worse; pooled regressions with every series standardised within its country or unit.</li>
+  <li><strong>Code.</strong> <a href="https://github.com/OCHA-DAP/ds-aa-drought-indicators">OCHA-DAP/ds-aa-drought-indicators</a>:
+      <code>build_tables.py</code>, <code>analyse.py</code>, <code>panel.py</code>, <code>gdhy.py</code>,
+      <code>summary.py</code>, <code>make_site.py</code>; processed tables and results under
+      <code>data/processed/</code>. Pages by the OCHA Centre for Humanitarian Data, September 2026.</li>
+</ul>

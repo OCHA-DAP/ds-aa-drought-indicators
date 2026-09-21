@@ -1,0 +1,144 @@
+{
+ "columns": {
+  "faostat": {
+   "label": "National staple production (FAOSTAT)",
+   "metric": "LOO R\u00b2",
+   "kind": "continuous",
+   "n": 240,
+   "note": "240 country-seasons, 10 countries; each series standardised within its country; leave-one-season-out."
+  },
+  "impact": {
+   "label": "Impact seasons: CERF drought allocation or EM-DAT event",
+   "metric": "AUC",
+   "kind": "binary",
+   "n": 1276,
+   "note": "1276 within-country (positive, negative) season pairs from AFG, BFA, ETH, GTM, HND, KEN, MRT, NER, SLV, TCD; positives: 83 seasons."
+  },
+  "bad_year": {
+   "label": "Framework-documented bad years",
+   "metric": "AUC",
+   "kind": "binary",
+   "n": 496,
+   "note": "496 within-country (positive, negative) season pairs from BFA, GTM, HND, MRT, SLV; positives: 26 seasons."
+  },
+  "fdw_all": {
+   "label": "Official subnational yield, all units (FEWS NET DW)",
+   "metric": "LOYO R\u00b2",
+   "kind": "continuous",
+   "n": 4801,
+   "note": "~4,800 unit-years in 7 countries (Guatemala has no yield); within-unit detrended; leave-one-year-out."
+  },
+  "fdw_aoi": {
+   "label": "Official subnational yield, framework-area units only",
+   "metric": "LOYO R\u00b2",
+   "kind": "continuous",
+   "n": 1173,
+   "note": "1173 unit-years in AFG, BFA, ETH, GTM, KEN, MRT."
+  },
+  "gdhy": {
+   "label": "GDHY gridded maize/wheat yield, admin 1 (secondary)",
+   "metric": "LOYO R\u00b2",
+   "kind": "continuous",
+   "n": 2748,
+   "note": "2001\u20132016, maize and wheat only, partly circular with NDVI."
+  }
+ },
+ "rows": {
+  "t_dt": {
+   "faostat": 0.133,
+   "impact": 0.572,
+   "bad_year": 0.673,
+   "fdw_all": 0.017,
+   "fdw_aoi": -0.012,
+   "gdhy": 0.006
+  },
+  "z_dt": {
+   "faostat": 0.02,
+   "impact": 0.533,
+   "bad_year": 0.637,
+   "fdw_all": 0.003,
+   "fdw_aoi": 0.019,
+   "gdhy": 0.023
+  },
+  "asi": {
+   "faostat": 0.145,
+   "impact": 0.554,
+   "bad_year": 0.704,
+   "fdw_all": 0.026,
+   "fdw_aoi": 0.001,
+   "gdhy": 0.02
+  },
+  "mvhi": {
+   "faostat": 0.132,
+   "impact": 0.584,
+   "bad_year": 0.747,
+   "fdw_all": 0.036,
+   "fdw_aoi": 0.015,
+   "gdhy": 0.005
+  },
+  "rain": {
+   "faostat": 0.062,
+   "impact": 0.623,
+   "bad_year": 0.78,
+   "fdw_all": 0.015,
+   "fdw_aoi": -0.004,
+   "gdhy": 0.011
+  },
+  "era5": {
+   "faostat": 0.09,
+   "impact": 0.639,
+   "bad_year": 0.758,
+   "fdw_all": null,
+   "fdw_aoi": null,
+   "gdhy": null
+  },
+  "spi": {
+   "faostat": 0.093,
+   "impact": 0.614,
+   "bad_year": 0.762,
+   "fdw_all": 0.014,
+   "fdw_aoi": -0.004,
+   "gdhy": 0.014
+  },
+  "wsi": {
+   "faostat": 0.091,
+   "impact": 0.556,
+   "bad_year": 0.637,
+   "fdw_all": 0.019,
+   "fdw_aoi": 0.008,
+   "gdhy": -0.001
+  },
+  "t_dt+asi": {
+   "faostat": 0.19,
+   "impact": 0.559,
+   "bad_year": 0.69,
+   "fdw_all": 0.037,
+   "fdw_aoi": -0.012,
+   "gdhy": null
+  },
+  "t_dt+mvhi": {
+   "faostat": 0.173,
+   "impact": 0.582,
+   "bad_year": 0.736,
+   "fdw_all": 0.041,
+   "fdw_aoi": 0.001,
+   "gdhy": 0.013
+  },
+  "t_dt+z_dt": {
+   "faostat": 0.13,
+   "impact": 0.553,
+   "bad_year": 0.649,
+   "fdw_all": 0.021,
+   "fdw_aoi": 0.01,
+   "gdhy": 0.024
+  },
+  "t_dt+rain": {
+   "faostat": 0.132,
+   "impact": 0.613,
+   "bad_year": 0.768,
+   "fdw_all": 0.022,
+   "fdw_aoi": -0.012,
+   "gdhy": 0.019
+  }
+ }
+}
