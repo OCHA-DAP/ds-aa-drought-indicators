@@ -113,7 +113,7 @@ NAMES = {**IND, "t_dt+asi": "Temperature + ASI", "t_dt+mvhi": "Temperature + VHI
 def summary_matrix():
     C = SUM["columns"]; rows = SUM["rows"]; keys = list(C)
     o = ['<div class="tblwrap"><table class="data matrix"><tr><th>Indicator</th>']
-    for c in keys: o.append('<th class="num mx">%s<br><span style="font-weight:400;color:#5e6a6b">%s</span></th>' % (esc(C[c]["short"]), esc(C[c]["metric"])))
+    for c in keys: o.append('<th class="num mx">%s<br><span style="font-weight:400;color:#5e6a6b">%s</span></th>' % (esc(C[c]["short"]).replace("&lt;br&gt;", "<br>"), esc(C[c]["metric"])))
     o.append("</tr>")
     for k, r in rows.items():
         o.append("<tr><td>%s</td>" % esc(NAMES.get(k, k)))
